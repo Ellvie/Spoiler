@@ -12,3 +12,31 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+
+
+
+/*Spoiler CSS*/
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Cormorant+Garamond&family=Josefin+Slab&family=Julius+Sans+One&family=Kanit&family=Yanone+Kaffeesatz&display=swap');
+
+/*    font-family: 'Abril Fatface', cursive;
+
+    font-family: 'Anton', sans-serif;
+
+    font-family: 'Bebas Neue', cursive;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-family: 'Josefin Slab', serif;
+
+    font-family: 'Julius Sans One', sans-serif;
+
+    font-family: 'Kanit', sans-serif;
+
+    font-family: 'Yanone Kaffeesatz', sans-serif;*/
+
+.flex {
+    display: flex;
+}
+
