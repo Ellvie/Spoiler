@@ -1,23 +1,6 @@
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
+﻿/*Spoiler CSS*/
 
-code {
-  color: #E01A76;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-
-
-
-/*Spoiler CSS*/
-
+/*Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Cormorant+Garamond&family=Josefin+Slab&family=Julius+Sans+One&family=Kanit&family=Yanone+Kaffeesatz&display=swap');
 
 /*    font-family: 'Abril Fatface', cursive;
@@ -36,7 +19,41 @@ code {
 
     font-family: 'Yanone Kaffeesatz', sans-serif;*/
 
+
+/*Variables*/
+$dark: #1b1b1b;
+$light: #e7e7e7;
+$accent: #ff6a6a;
+
+
+/*General*/
+body{
+    background-color: $dark;
+    color:  $light;
+}
+
 .flex {
     display: flex;
 }
 
+.logo {
+    color: $accent;
+    font-family: 'Kanit', 'Yanone Kaffeesatz', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+
+/*Links*/
+a {
+    color: $light;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $accent;
+}
+
+
+/*Lists*/
+ul {
+    list-style: none;
+}
