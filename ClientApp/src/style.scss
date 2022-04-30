@@ -80,18 +80,22 @@ nav {
 
 .logo {
     color: $accent;
-    font-family: 'Kanit', 'Yanone Kaffeesatz', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: 'Abril Fatface', 'Anton', 'Bebas Neue', 'Julius Sans One', 'Kanit', 'Yanone Kaffeesatz', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3em;
 }
 
 .container {
     position: relative;
     margin: 5em 0 0 20%;
-    padding: 2em 4em;
     width: 80%;
 
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+main {
+    padding: 2em 4em;
 }
 
 footer {
@@ -131,4 +135,14 @@ li {
     min-height: 100vh;
     padding: 1em 0;
     margin: 5em 0 0 0;
+}
+
+
+/*Carousel ----------------------------------------------------------------------------*/
+.carousel .carousel-status {
+    display: none;
+}
+
+.carousel .thumbs-wrapper {
+    display: none;
 }

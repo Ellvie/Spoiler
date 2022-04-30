@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
 import { SideMenu } from './SideMenu';
 import { Footer } from './Footer';
+import { BannerCarousel } from './BannerCarousel';
 
 export class Layout extends Component {
     static displayName = Layout.name;
@@ -15,9 +15,12 @@ export class Layout extends Component {
 
                 <div className="flex">
                     <SideMenu />
-                    <Container>
-                        {this.props.children}
-                    </Container>
+                    <div className="container">
+                        <BannerCarousel />
+                        <main>
+                            {this.props.children}
+                        </main>
+                    </div>
                 </div>
 
                 <Footer />

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
 
+import { Home } from './components/Home';
 import { News } from './components/News';
 import { Guide } from './components/Guide';
 import { Forum } from './components/Forum';
@@ -25,8 +23,6 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={Home} />
-            <Route path='/counter' component={Counter} />
-
             <Route path='/news' component={News} />
             <Route path='/guide' component={Guide} />
             <Route path='/forum' component={Forum} />
@@ -36,9 +32,12 @@ export default class App extends Component {
 
 
 
-        <AuthorizeRoute path='/fetch-data' component={FetchData} />
+        
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
       </Layout>
     );
   }
 }
+
+//Insert under <Route>
+//<AuthorizeRoute path='/fetch-data' component={FetchData} /> 
