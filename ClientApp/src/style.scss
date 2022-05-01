@@ -125,6 +125,14 @@ li {
     padding: 1em 0;
 }
 
+.control-dots li {
+    padding: 0;
+}
+
+.carousel .control-dots {
+    margin: 1em 0 !important;
+}
+
 .sideMenu {
     position: fixed;
     top: 0;
