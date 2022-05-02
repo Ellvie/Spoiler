@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import banner1 from "../pics/peopleBanner2.jpg";
 import banner2 from "../pics/mr.webbBanner.jpg";
 import banner3 from "../pics/bridgeTown.jpg";
-import banner4 from "../pics/motelCali.jpg";
+import banner4 from "../pics/motelCalifornia.jpg";
 import banner5 from "../pics/miss.holmes.jpg";
 import banner6 from "../pics/sixStringDreams.jpg";
 import banner7 from "../pics/bangBangDang.jpg";

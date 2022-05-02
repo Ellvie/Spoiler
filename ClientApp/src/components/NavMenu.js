@@ -29,8 +29,9 @@ export class NavMenu extends Component {
                 <nav className="spaceBetween">
                         <Link className="logo" to="/">�Spoiler!</Link>
                         {/* <NavbarToggler onClick={this.toggleNavbar} className="" /> */}
-                        <div className="">
+                        
                         {/* <div className="" isOpen={!this.state.collapsed} navbar> */}
+                        <div className="">
                             <ul className="flex">
                                 <LoginMenu>
                                 </LoginMenu>

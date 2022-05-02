@@ -63,7 +63,8 @@ nav {
     width: 100%;
     padding: 0.5em 2em;
     //border-bottom: 1px solid #3c3c3c;
-    box-shadow: 1px 5px 10px #2a2a2a;
+    //box-shadow: 1px 5px 10px #454545;
+    box-shadow: 1px 5px 10px #ffffff26;
     background-color: $dark;
     z-index: 10;
 }
@@ -84,14 +85,22 @@ nav {
     font-size: 1.3em;
 }
 
+.miniIcon {
+    display: block;
+    width: 20px;
+    height: auto;
+    margin: 0 1em 0 0;
+}
+
 .container {
     position: relative;
-    margin: 5em 0 0 20%;
+    margin: 3em 0 0 20%;
     width: 80%;
 
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: $dark;
 }
 
 main {
@@ -103,6 +112,9 @@ footer {
     text-align: center;
 }
 
+.carousel-root {
+    margin: 0 0 0 0.3em;
+}
 
 /*Links -----------------------------------------------------------------------------------*/
 a {
@@ -114,11 +126,17 @@ a:hover {
     color: $accent;
 }
 
+.sideMenuLink {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 2em 0;
+    font-size: 1.05em;
+}
 
 /*Lists ------------------------------------------------------------------------------------*/
 ul {
     list-style: none;
-    margin: 0;
 }
 
 li {
@@ -139,12 +157,27 @@ li {
     left: 0;
     width: 20%;
     //border-right: 1px solid #222222;
-    box-shadow: 1px 5px 10px #2a2a2a;
+    //box-shadow: 1px 5px 10px #2a2a2a;
+    box-shadow: 1px 5px 10px #ffffff26;
     min-height: 100vh;
     padding: 1em 0;
     margin: 5em 0 0 0;
+    z-index: 10;
+    overflow: hidden;
 }
 
+.sideMenu li {
+    width: 100%;
+    padding: 0 2em;
+    //border-bottom: 1px solid #a7a7a7;
+    box-shadow: 1px 5px 10px #ffffff26;
+    transition: transform .2s;
+}
+
+.sideMenu li:hover {
+    transform: scale(1.03);
+    background-color: $dark;
+}
 
 /*Carousel ----------------------------------------------------------------------------*/
 .carousel .carousel-status {
