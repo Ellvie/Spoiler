@@ -13,5 +13,6 @@ namespace Spoiler.Data
         public DbSet<Show> Shows { get; set; }
         public DbSet<Film> Films { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<TVGuide> TVGuide { get; set; }
     }
 }

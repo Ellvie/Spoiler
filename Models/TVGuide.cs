@@ -1,8 +1,8 @@
 ﻿namespace Spoiler.Models
 {
-    public class News
+    public class TVGuide
     {
-        public int NewsId { get; set; }
+        public int TVGuideId { get; set; }
         public string? Content { get; set; }
     }
 }
