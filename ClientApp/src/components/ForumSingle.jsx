@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react';
+import { ForumComment } from './ForumComment';
 
-export class Episode extends Component {
-    static displayName = Episode.name;
+export class ForumSingle extends Component {
+    static displayName = ForumSingle.name;
 
 
     render() {
@@ -17,6 +18,10 @@ export class Episode extends Component {
                     </div>
                     <p>Lorem ipsum</p>
                 </div>
+
+                <section className="content">
+                    <ForumComment />
+                </section>
             </main>
         );
     }

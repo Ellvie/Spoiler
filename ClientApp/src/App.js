@@ -6,9 +6,14 @@ import { Home } from './components/Home';
 import { News } from './components/News';
 import { Guide } from './components/Guide';
 import { Forum } from './components/Forum';
+import { ForumSingle } from './components/ForumSingle';
 import { Recaps } from './components/Recaps';
+import { RecapSingle } from './components/RecapSingle';
 import { Reviews } from './components/Reviews';
+import { ReviewSingle } from './components/ReviewSingle';
 import { Search } from './components/Search';
+import { ShowEntry } from './components/ShowEntry';
+import { FilmEntry } from './components/FilmEntry';
 
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -26,9 +31,14 @@ export default class App extends Component {
             <Route path='/news' component={News} />
             <Route path='/guide' component={Guide} />
             <Route path='/forum' component={Forum} />
+            <Route path='/forumSingle' component={ForumSingle} />
             <Route path='/recaps' component={Recaps} />
+            <Route path='/recapSingle' component={RecapSingle} />
             <Route path='/reviews' component={Reviews} />
+            <Route path='/reviewSingle' component={ReviewSingle} />
             <Route path='/search' component={Search} />
+            <Route path='/showEntry' component={ShowEntry} />
+            <Route path='/filmEntry' component={FilmEntry} />
 
 
 

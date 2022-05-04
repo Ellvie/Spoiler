@@ -5,8 +5,8 @@ export class News extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { news: {}};
-      }
+        this.state = { news: {} };
+    }
 
     componentDidMount() {
         this.getNews();
@@ -18,23 +18,25 @@ export class News extends Component {
             <main>
                 <h1>News</h1>
 
-                <div className="column">
-                    <img className="miniPic" src="" alt="Picture of channel logo"></img>
-                    <h2>Title</h2>
-                    <p className="date">2022-03-30</p>
-                    <p>{this.state.news.content}</p>
-                </div>
+                <section className="content">
+                    <div className="column">
+                        <img className="responsive" src="" alt="Picture."></img>
+                        <h2>Title</h2>
+                        <p className="date">2022-03-30</p>
+                        <p>{this.state.news.content}</p>
+                    </div>
+                </section>
             </main>
         );
     }
 
     async getNews() {
         await fetch('https://localhost:7202/api/news')
-            .then(response =>  response.json())
+            .then(response => response.json())
             .then(data => {
-                this.setState({ news: data});
+                this.setState({ news: data });
             })
-            .catch(error => console.error(error));    
+            .catch(error => console.error(error));
     }
-   
+
 }
