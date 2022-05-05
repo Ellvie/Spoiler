@@ -14,5 +14,8 @@ namespace Spoiler.Data
         public DbSet<Film> Films { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<TVGuide> TVGuide { get; set; }
+        public DbSet<Forum> Forum { get; set; }
+        public DbSet<Recap> Recap { get; set; }
+        public DbSet<Review> Review { get; set; }
     }
 }

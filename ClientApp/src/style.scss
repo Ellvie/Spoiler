@@ -113,8 +113,10 @@ main {
 }
 
 footer {
+    position: relative;
     margin-top: auto;
     text-align: center;
+    z-index: 50;
 }
 
 .carousel-root {
