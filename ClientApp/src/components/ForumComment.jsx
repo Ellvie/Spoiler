@@ -4,6 +4,8 @@ import Axios from 'axios';
 
 
 export class ForumComment extends Component {
+    static displayName = ForumComment.name;
+
     constructor(props) {
         super(props);
         this.state = { value: '' };
@@ -21,7 +23,6 @@ export class ForumComment extends Component {
             })
             .catch(error => console.error(error));
 
-        //alert('An essay was submitted: ' + this.state.value);
         event.preventDefault();
     }
 

@@ -5,7 +5,7 @@
         public int FilmId { get; set; }
         public string? FilmName { get; set; }
 
-        public string? PremierDate { get; set; }
+        public DateOnly? PremierDate { get; set; }
 
         public string? Genre { get; set; }
 
