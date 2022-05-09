@@ -12,8 +12,12 @@ import { RecapSingle } from './components/RecapSingle';
 import { Reviews } from './components/Reviews';
 import { ReviewSingle } from './components/ReviewSingle';
 import { Search } from './components/Search';
-import { ShowEntry } from './components/ShowEntry';
-import { FilmEntry } from './components/FilmEntry';
+import { ShowForum } from './components/ShowForum';
+import { FilmForum } from './components/FilmForum';
+import { ShowReview } from './components/ShowReview';
+import { FilmReview } from './components/FilmReview';
+import { ShowRecap } from './components/ShowRecap';
+import { FilmRecap } from './components/FilmRecap';
 
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -37,8 +41,12 @@ export default class App extends Component {
             <Route path='/reviews' component={Reviews} />
             <Route path='/reviewSingle' component={ReviewSingle} />
             <Route path='/search' component={Search} />
-            <Route path='/showEntry' component={ShowEntry} />
-            <Route path='/filmEntry' component={FilmEntry} />
+            <AuthorizeRoute path='/showForum' component={ShowForum} />
+            <AuthorizeRoute path='/filmForum' component={FilmForum} />
+            <AuthorizeRoute path='/showReview' component={ShowReview} />
+            <AuthorizeRoute path='/filmReview' component={FilmReview} />
+            <AuthorizeRoute path='/showRecap' component={ShowRecap} />
+            <AuthorizeRoute path='/filmRecap' component={FilmRecap} />
 
 
 

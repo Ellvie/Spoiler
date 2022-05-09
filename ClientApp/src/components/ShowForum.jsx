@@ -1,18 +1,18 @@
 ﻿import React, { Component } from 'react';
 
-export class ShowEntry extends Component {
-    static displayName = ShowEntry.name;
+export class ShowForum extends Component {
+    static displayName = ShowForum.name;
 
 
     render() {
         return (
             <main>
                 <section className="comment">
-                    <h1>Add a show entry</h1>
+                    <h1>Add a show forum entry</h1>
 
                     <form className="">
                         <label for="showName">Show name:</label><br></br>
-                        <input type="text" id="showName" name="showName"></input><br></br>
+                        <input type="text" id="showName" name="showName"></input><br></br><br></br>
 
                         <label for="season">Season:</label><br></br>
                         <input type="text" id="season" name="season"></input><br></br><br></br>
@@ -38,7 +38,7 @@ export class ShowEntry extends Component {
                         <label for="description">Description:</label><br></br>
                         <input type="text" id="description" name="description"></input><br></br><br></br>
 
-
+                        <label for="entry">Entry:</label><br></br>
                         <textarea id="entry" name="entry" placeholder="Your entry..."></textarea>
                         <input type="submit" value="Post"></input>
                     </form>
