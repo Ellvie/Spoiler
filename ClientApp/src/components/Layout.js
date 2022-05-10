@@ -17,6 +17,7 @@ export class Layout extends Component {
                     <SideMenu />
                     <div className="container">
                         <BannerCarousel />
+                        
                         <main>
                             {this.props.children}
                         </main>

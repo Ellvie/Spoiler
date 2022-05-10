@@ -16,8 +16,8 @@ export class Reviews extends Component {
                 <section className="content">
                     <h2>Add</h2>
                     <div className="flex">
-                        <Link className="flex" to="/showEntry"><img className="miniIcon" src={tv}></img>TV-show</Link>
-                        <Link className="flex" to="/filmEntry"><img className="miniIcon" src={film}></img>Film</Link>
+                        <Link className="flex" to="/showReview"><img className="miniIcon" src={tv}></img>TV-show</Link>
+                        <Link className="flex" to="/filmReview"><img className="miniIcon" src={film}></img>Film</Link>
                     </div>
                 </section>
 

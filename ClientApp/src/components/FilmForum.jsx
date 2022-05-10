@@ -1,6 +1,9 @@
-﻿import React, { Component, useState } from 'react';
+﻿import React, { Component } from 'react';
 import Axios from 'axios';
 import authService from './api-authorization/AuthorizeService';
+import { Link } from 'react-router-dom';
+
+import left from "../pics/arrowLeft.png";
 
 
 export class FilmForum extends Component {
@@ -71,8 +74,7 @@ export class FilmForum extends Component {
                     year: '',
                     genre: '',
                     studio: '',
-                    description: '',
-                    entry: '',
+                    description: ''
                 });
             })
             .catch(error => console.error(error));
@@ -98,6 +100,7 @@ export class FilmForum extends Component {
     render() {
         return (
             <main>
+                <Link className="flex back" to="/Forum"><img className="miniIcon" src={left}></img>Back</Link>
                 <section className="comment">
                     <h1>Add a film forum entry</h1>
 
@@ -106,7 +109,7 @@ export class FilmForum extends Component {
                         <input type="text" id="filmName" name="filmName" required value={this.state.filmName} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="year">Year:</label><br></br>
-                        <input type="number" id="year" name="year" required value={this.state.year} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="number" id="year" name="year" min="0" max="3000" required value={this.state.year} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="genre">Genre:</label><br></br>
                         <input type="text" id="genre" name="genre" required value={this.state.genre} onChange={this.handleChange}></input><br></br><br></br>

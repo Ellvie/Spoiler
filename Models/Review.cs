@@ -14,7 +14,7 @@ namespace Spoiler.Models
         public string? ReviewContent { get; set;}
 
         [Required]
-        public string? Rating { get; set; }
+        public int Rating { get; set; }
 
         public string? Pic { get; set; }
 
