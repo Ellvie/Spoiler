@@ -62,8 +62,42 @@ export class ShowForum extends Component {
     }
 
     //Handle submitted form
-    handleSubmit(event) {
-        //Post to show table
+    async handleSubmit(event) {
+        event.preventDefault();
+
+        const showResponse = await Axios.post('https://localhost:7202/api/shows', {
+            showName: this.state.showName,
+            season: this.state.season,
+            episode: this.state.episode,
+            episodeName: this.state.episodeName,
+            airDate: this.state.airDate,
+            airTime: this.state.airTime,
+            genre: this.state.genre,
+            network: this.state.network,
+            description: this.state.description,
+        })
+
+        const forumResponse = await Axios.post('https://localhost:7202/api/forum', {
+                forumComment: this.state.entry,
+                showId: showResponse.data.showId,
+                user: this.state.user
+        })
+        
+        this.setState({
+            showName: '',
+            season: '',
+            episode: '',
+            episodeName: '',
+            airDate: '',
+            airTime: '',
+            genre: '',
+            network: '',
+            description: '' ,
+            entry: '',
+            show: {}           
+        })
+
+        /* //Post to show table
         Axios.post('https://localhost:7202/api/shows', {
             showName: this.state.showName,
             season: this.state.season,
@@ -105,7 +139,7 @@ export class ShowForum extends Component {
             })
             .catch(error => console.error(error));
 
-        event.preventDefault();
+        event.preventDefault(); */
     }
 
     render() {

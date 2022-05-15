@@ -26,7 +26,7 @@ namespace Spoiler.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Forum>>> GetForum()
         {
-            return await _context.Forum.ToListAsync();
+            return await _context.Forum.Include(f => f.Show).ToListAsync();
         }
 
         // GET: api/Forum/5
@@ -77,12 +77,25 @@ namespace Spoiler.Controllers
         // POST: api/Forum
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Forum>> PostForum(Forum forum)
+        public async Task<ActionResult<Forum>> PostForum(ForumCommentPost forumComment)
         {
-            _context.Forum.Add(forum);
+            var newForumEntry = new Forum
+            {
+                ForumComment = forumComment.ForumComment,
+                User = forumComment.User
+            };
+            if (forumComment.ShowId is null)
+            {
+                newForumEntry.Film = _context.Films.Find(forumComment.FilmId);
+            }
+            else
+            {
+                newForumEntry.Show = _context.Shows.Find(forumComment.ShowId);
+            }            
+            _context.Forum.Add(newForumEntry);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetForum", new { id = forum.ForumId }, forum);
+            return CreatedAtAction("GetForum", new { id = newForumEntry.ForumId }, newForumEntry);
         }
 
         // DELETE: api/Forum/5
