@@ -36,11 +36,11 @@ export class Forum extends Component {
 
     displayForum = (forum) => {
         if (!forum.length) return null;
-
+        console.log(forum)
         return forum.map((forum) => (
-            <Link key={forum.ForumId} className="flex" to="/forumSingle">
+            <Link key={forum.forumId} className="flex" to="/forumSingle">
                 <div className="flex entry">
-                    <h3>{ forum.ForumComment } - Episode name - S01E01</h3>
+                    <h3>{ forum.forumComment } - Episode name - S01E01</h3>
                     <img className="miniPic" src="" alt="Picture of tv-show"></img>
                 </div>
             </Link>
