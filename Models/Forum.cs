@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Spoiler.Models
 {
@@ -12,6 +13,8 @@ namespace Spoiler.Models
         public DateTime Added { get; set; } = DateTime.Now;
 
         public Film? Film { get; set; }
+
+        public int FilmKey { get; set; }
 
         public Show? Show { get; set; }
 

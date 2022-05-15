@@ -18,12 +18,14 @@ export class FilmForum extends Component {
             studio: '',
             description: '',
 
-            entry: '',
-
+            forumComment: '',
             isAuthenticated: false,
-            //userName: null
-            user: null
+            user: null,
+            data: [],
+            filmId: '',
+            FilmKey: ''
         };
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -43,7 +45,6 @@ export class FilmForum extends Component {
         const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
         this.setState({
             isAuthenticated,
-            //userName: user && user.name
             user: user
         });
     }
@@ -68,33 +69,63 @@ export class FilmForum extends Component {
             studio: this.state.studio,
             description: this.state.description,
         })
-            .then(() => {
+
+            .then((response) => {
+                console.log(response);
                 this.setState({
                     filmName: '',
                     year: '',
                     genre: '',
                     studio: '',
-                    description: ''
-                });
+                    description: '',
+                    data: response.data
+                });    
             })
             .catch(error => console.error(error));
 
 
         //Post to forum comment table
-        Axios.post('https://localhost:7202/api/forum', {
-            forumComment: this.state.entry,
-            //userName: this.state.userName
-            user: this.state.user
+        Axios({
+            method: 'post',
+            url: 'https://localhost:7202/api/forum',
+            data: {
+                forumComment: this.state.forumComment,
+                user: this.state.user,
+                FilmKey: this.state.data.filmId
+            },
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
         })
             .then(() => {
                 this.setState({
-                    entry: '',
-                    user: null
+                    forumComment: '',
+                    user: null,
+                    FilmKey: '',
+                    data: ''
                 });
             })
             .catch(error => console.error(error));
 
         event.preventDefault();
+
+        ////Post to forum comment table
+        //Axios.post('https://localhost:7202/api/forum', {
+        //    forumComment: this.state.forumComment,
+        //    user: this.state.user,
+        //    filmId: this.state.data.filmId
+        //})
+        //    .then(() => {
+        //        this.setState({
+        //            forumComment: '',
+        //            user: null,
+        //            filmId: '',
+        //            data: ''
+        //        });
+        //    })
+        //    .catch(error => console.error(error));
+
+        //event.preventDefault();
     }
 
     render() {
@@ -105,23 +136,23 @@ export class FilmForum extends Component {
                     <h1>Add a film forum entry</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>
-                        <label for="filmName">Film name:</label><br></br>
+                        <label>Film name:</label><br></br>
                         <input type="text" id="filmName" name="filmName" required value={this.state.filmName} onChange={this.handleChange}></input><br></br><br></br>
 
-                        <label for="year">Year:</label><br></br>
+                        <label>Year:</label><br></br>
                         <input type="number" id="year" name="year" min="0" max="3000" required value={this.state.year} onChange={this.handleChange}></input><br></br><br></br>
 
-                        <label for="genre">Genre:</label><br></br>
+                        <label>Genre:</label><br></br>
                         <input type="text" id="genre" name="genre" required value={this.state.genre} onChange={this.handleChange}></input><br></br><br></br>
 
-                        <label for="studio">Studio:</label><br></br>
+                        <label>Studio:</label><br></br>
                         <input type="text" id="studio" name="studio" required value={this.state.studio} onChange={this.handleChange}></input><br></br><br></br>
 
-                        <label for="description">Description:</label><br></br>
+                        <label>Description:</label><br></br>
                         <input type="text" id="description" name="description" required value={this.state.description} onChange={this.handleChange}></input><br></br><br></br>
 
-                        <label for="entry">Entry:</label><br></br>
-                        <textarea id="entry" name="entry" placeholder="Your entry..." required value={this.state.entry} onChange={this.handleChange}></textarea>
+                        <label>Entry:</label><br></br>
+                        <textarea id="forumComment" name="forumComment" placeholder="Your entry..." required value={this.state.forumComment} onChange={this.handleChange}></textarea>
 
                         <input type="submit" value="Post"></input>
                     </form>

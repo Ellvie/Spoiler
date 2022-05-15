@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Spoiler.Data;
 
@@ -10,9 +11,10 @@ using Spoiler.Data;
 namespace Spoiler.Migrations
 {
     [DbContext(typeof(SpoilerContext))]
-    partial class SpoilerContextModelSnapshot : ModelSnapshot
+    [Migration("20220512104728_fixForeignKey")]
+    partial class fixForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
@@ -108,17 +110,14 @@ namespace Spoiler.Migrations
                     b.Property<DateTime>("Added")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("FilmId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("FilmKey")
+                    b.Property<int>("FilmId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ForumComment")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ShowId")
+                    b.Property<int>("ShowId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserId")
@@ -295,11 +294,15 @@ namespace Spoiler.Migrations
                 {
                     b.HasOne("Spoiler.Models.Film", "Film")
                         .WithMany()
-                        .HasForeignKey("FilmId");
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Spoiler.Models.Show", "Show")
                         .WithMany()
-                        .HasForeignKey("ShowId");
+                        .HasForeignKey("ShowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Spoiler.Models.ApplicationUser", "User")
                         .WithMany()

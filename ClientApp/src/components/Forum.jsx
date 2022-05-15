@@ -29,12 +29,7 @@ export class Forum extends Component {
                     forum: data
                 });
             })
-            //.then((res) => res.json())
-            //.then((json) => {
-            //    this.setState({
-            //        forum: json
-            //    });
-            //})
+
             .catch(error => console.error(error));
     }
 
