@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { LoginMenu } from './api-authorization/LoginMenu';
 
 import '../style.scss'
+import logo from "../pics/spoiler.png";
 
 export class NavMenu extends Component {
     static displayName = NavMenu.name;
@@ -29,7 +30,7 @@ export class NavMenu extends Component {
         return (
             <header>
                 <nav className="spaceBetween">
-                        <Link className="logo" to="/">�Spoiler!</Link>
+                    <Link className="logo" to="/">¡Spoiler!</Link>
                         {/* <NavbarToggler onClick={this.toggleNavbar} className="" /> */}
                         
                         {/* <div className="" isOpen={!this.state.collapsed} navbar> */}
