@@ -11,8 +11,8 @@ using Spoiler.Data;
 namespace Spoiler.Migrations
 {
     [DbContext(typeof(SpoilerContext))]
-    [Migration("20220509135925_changedDateToYear")]
-    partial class changedDateToYear
+    [Migration("20220520175705_forumComment3")]
+    partial class forumComment3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,19 +78,23 @@ namespace Spoiler.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FilmName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Genre")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("PremierDate")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Studio")
+                        .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("FilmId");
 
@@ -128,6 +132,31 @@ namespace Spoiler.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Forum");
+                });
+
+            modelBuilder.Entity("Spoiler.Models.ForumComment", b =>
+                {
+                    b.Property<int>("ForumCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("ForumId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ForumCommentId");
+
+                    b.HasIndex("ForumId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ForumComment");
                 });
 
             modelBuilder.Entity("Spoiler.Models.News", b =>
@@ -199,9 +228,8 @@ namespace Spoiler.Migrations
                     b.Property<string>("Pic")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Rating")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Rating")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ReviewContent")
                         .IsRequired()
@@ -235,30 +263,37 @@ namespace Spoiler.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AirDate")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AirTime")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Episode")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("EpisodeName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Network")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Season")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ShowName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ShowId");
@@ -297,6 +332,21 @@ namespace Spoiler.Migrations
                     b.Navigation("Film");
 
                     b.Navigation("Show");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Spoiler.Models.ForumComment", b =>
+                {
+                    b.HasOne("Spoiler.Models.Forum", "Forum")
+                        .WithMany()
+                        .HasForeignKey("ForumId");
+
+                    b.HasOne("Spoiler.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Forum");
 
                     b.Navigation("User");
                 });

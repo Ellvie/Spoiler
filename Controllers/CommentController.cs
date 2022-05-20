@@ -13,47 +13,35 @@ namespace Spoiler.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ForumController : ControllerBase
+    public class CommentController : ControllerBase
     {
         private readonly SpoilerContext _context;
 
-        public ForumController(SpoilerContext context)
+        public CommentController(SpoilerContext context)
         {
             _context = context;
         }
 
-        // GET: api/Forum
+       // GET: api/Comment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Forum>>> GetForum()
+        public async Task<ActionResult<IEnumerable<ForumComment>>> GetComments(int forumId)
         {
-            return await _context.Forum.Include(f => f.Show).Include(f => f.Film).ToListAsync();
+            var test = await _context.ForumComment.Where(x => x.Forum.ForumId == forumId).ToListAsync();
+            return test;
         }
 
-        // GET: api/Forum/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Forum>> GetForum(int id)
-        {
-            var forum = await _context.Forum.FindAsync(id);
-
-            if (forum == null)
-            {
-                return NotFound();
-            }
-
-            return forum;
-        }
 
         // PUT: api/Forum/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutForum(int id, Forum forum)
+        public async Task<IActionResult> PutForum(int id, ForumComment forumComment)
         {
-            if (id != forum.ForumId)
+            if (id != forumComment.ForumCommentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(forum).State = EntityState.Modified;
+            _context.Entry(forumComment).State = EntityState.Modified;
 
             try
             {
@@ -74,31 +62,7 @@ namespace Spoiler.Controllers
             return NoContent();
         }
 
-        // POST: api/Forum
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Forum>> PostForum(Forum forum)
-        {
-            var newForumEntry = new Forum
-            {
-                ForumComment = forum.ForumComment,
-                User = forum.User
-            };
-            if (forum.ShowKey is null)
-            {
-                newForumEntry.Film = _context.Films.Find(forum.FilmKey);
-            }
-            else
-            {
-                newForumEntry.Show = _context.Shows.Find(forum.ShowKey);
-            }            
-            _context.Forum.Add(newForumEntry);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetForum", new { id = newForumEntry.ForumId }, newForumEntry);
-        }
-
-        // POST: api/Forum
+        // POST: api/Comment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Forum>> PostComment(ForumComment forumComment)
@@ -115,17 +79,17 @@ namespace Spoiler.Controllers
             return CreatedAtAction("GetForum", new { id = newForumComment.ForumCommentId }, newForumComment);
         }
 
-        // DELETE: api/Forum/5
+        // DELETE: api/Comment/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteForum(int id)
         {
-            var forum = await _context.Forum.FindAsync(id);
+            var forum = await _context.ForumComment.FindAsync(id);
             if (forum == null)
             {
                 return NotFound();
             }
 
-            _context.Forum.Remove(forum);
+            _context.ForumComment.Remove(forum);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -133,7 +97,7 @@ namespace Spoiler.Controllers
 
         private bool ForumExists(int id)
         {
-            return _context.Forum.Any(e => e.ForumId == id);
+            return _context.ForumComment.Any(e => e.ForumCommentId == id);
         }
     }
 }

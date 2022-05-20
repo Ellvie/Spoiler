@@ -132,6 +132,31 @@ namespace Spoiler.Migrations
                     b.ToTable("Forum");
                 });
 
+            modelBuilder.Entity("Spoiler.Models.ForumComment", b =>
+                {
+                    b.Property<int>("ForumCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("ForumId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ForumCommentId");
+
+                    b.HasIndex("ForumId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ForumComment");
+                });
+
             modelBuilder.Entity("Spoiler.Models.News", b =>
                 {
                     b.Property<int>("NewsId")
@@ -305,6 +330,21 @@ namespace Spoiler.Migrations
                     b.Navigation("Film");
 
                     b.Navigation("Show");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Spoiler.Models.ForumComment", b =>
+                {
+                    b.HasOne("Spoiler.Models.Forum", "Forum")
+                        .WithMany()
+                        .HasForeignKey("ForumId");
+
+                    b.HasOne("Spoiler.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Forum");
 
                     b.Navigation("User");
                 });

@@ -36,12 +36,13 @@ export class Forum extends Component {
 
     displayForum = (forum) => {
         if (!forum.length) return null;
-        console.log(forum)
         return forum.map((forum) => (
-            <Link key={forum.forumId} className="flex box" to="/forumSingle">
+            <Link key={forum.forumId} className="flex box" to={{
+                pathname: "/forumSingle",
+                state: forum}}>
                 <div className="flex entry">
-                    <h3>{ forum.showName } - Episode name - S01E01</h3>
-                    <img className="miniPic" src="" alt="Picture of tv-show"></img>
+                    <h3>{forum.show ? forum.show.showName : forum.film.filmName} - {forum.show ? forum.show.episodeName : forum.film.year}  {forum.show ? forum.show.episode : null}</h3>
+                    {/*<img className="miniPic" src="" alt="Picture of tv-show"></img>*/}
                 </div>
             </Link>
         ));

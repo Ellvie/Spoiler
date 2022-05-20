@@ -15,8 +15,8 @@ export class ForumComment extends Component {
 
     handleChange(event) { this.setState({ value: event.target.value }); }
     handleSubmit(event) {
-        Axios.post('https://localhost:7202/api/forum', {
-            forumComment: this.state.value
+        Axios.post('https://localhost:7202/api/Comment', {
+            comment: this.state.value
         })
             .then(() => {
                 this.setState({value: ''});

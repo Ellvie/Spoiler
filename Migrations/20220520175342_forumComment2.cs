@@ -4,7 +4,7 @@
 
 namespace Spoiler.Migrations
 {
-    public partial class filmDate : Migration
+    public partial class forumComment2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -11,8 +11,8 @@ using Spoiler.Data;
 namespace Spoiler.Migrations
 {
     [DbContext(typeof(SpoilerContext))]
-    [Migration("20220512105542_fixForeignKey3")]
-    partial class fixForeignKey3
+    [Migration("20220520175342_forumComment2")]
+    partial class forumComment2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,9 +113,6 @@ namespace Spoiler.Migrations
                     b.Property<int?>("FilmId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("FilmKey")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("ForumComment")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -123,13 +120,7 @@ namespace Spoiler.Migrations
                     b.Property<int?>("ShowId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ShowKey")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserKey")
                         .HasColumnType("TEXT");
 
                     b.HasKey("ForumId");

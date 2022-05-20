@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Spoiler.Migrations
 {
-    public partial class addedClasses : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,6 +35,23 @@ namespace Spoiler.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Films",
+                columns: table => new
+                {
+                    FilmId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FilmName = table.Column<string>(type: "TEXT", nullable: false),
+                    Year = table.Column<int>(type: "INTEGER", nullable: false),
+                    Genre = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    Studio = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Films", x => x.FilmId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "News",
                 columns: table => new
                 {
@@ -45,6 +62,27 @@ namespace Spoiler.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_News", x => x.NewsId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shows",
+                columns: table => new
+                {
+                    ShowId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ShowName = table.Column<string>(type: "TEXT", nullable: false),
+                    Season = table.Column<int>(type: "INTEGER", nullable: false),
+                    Episode = table.Column<int>(type: "INTEGER", nullable: false),
+                    EpisodeName = table.Column<string>(type: "TEXT", nullable: false),
+                    AirDate = table.Column<string>(type: "TEXT", nullable: false),
+                    AirTime = table.Column<string>(type: "TEXT", nullable: false),
+                    Genre = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    Network = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shows", x => x.ShowId);
                 });
 
             migrationBuilder.CreateTable(
@@ -134,7 +172,7 @@ namespace Spoiler.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     ReviewTitle = table.Column<string>(type: "TEXT", nullable: false),
                     ReviewContent = table.Column<string>(type: "TEXT", nullable: false),
-                    Rating = table.Column<string>(type: "TEXT", nullable: false),
+                    Rating = table.Column<int>(type: "INTEGER", nullable: false),
                     Pic = table.Column<string>(type: "TEXT", nullable: true),
                     Added = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FilmId = table.Column<int>(type: "INTEGER", nullable: true),
@@ -226,6 +264,12 @@ namespace Spoiler.Migrations
 
             migrationBuilder.DropTable(
                 name: "ApplicationUser");
+
+            migrationBuilder.DropTable(
+                name: "Films");
+
+            migrationBuilder.DropTable(
+                name: "Shows");
         }
     }
 }

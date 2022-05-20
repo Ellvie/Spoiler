@@ -11,8 +11,8 @@ using Spoiler.Data;
 namespace Spoiler.Migrations
 {
     [DbContext(typeof(SpoilerContext))]
-    [Migration("20220520125404_forumTableFix")]
-    partial class forumTableFix
+    [Migration("20220520155446_initialCreate")]
+    partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

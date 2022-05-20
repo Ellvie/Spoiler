@@ -11,8 +11,8 @@ using Spoiler.Data;
 namespace Spoiler.Migrations
 {
     [DbContext(typeof(SpoilerContext))]
-    [Migration("20220509141601_changedDateToYear2")]
-    partial class changedDateToYear2
+    [Migration("20220520171553_forumComment")]
+    partial class forumComment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,18 +78,22 @@ namespace Spoiler.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FilmName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Studio")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("Year")
+                    b.Property<int>("Year")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("FilmId");
@@ -199,9 +203,8 @@ namespace Spoiler.Migrations
                     b.Property<string>("Pic")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Rating")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Rating")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ReviewContent")
                         .IsRequired()
@@ -235,30 +238,37 @@ namespace Spoiler.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AirDate")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AirTime")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Episode")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("EpisodeName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Network")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Season")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ShowName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ShowId");

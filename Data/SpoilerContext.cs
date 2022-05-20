@@ -17,5 +17,6 @@ namespace Spoiler.Data
         public DbSet<Forum> Forum { get; set; }
         public DbSet<Recap> Recap { get; set; }
         public DbSet<Review> Review { get; set; }
+        public DbSet<ForumComment> ForumComment { get; set; }
     }
 }

@@ -4,7 +4,7 @@
 
 namespace Spoiler.Migrations
 {
-    public partial class fixForeignKey3 : Migration
+    public partial class forumComment : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
