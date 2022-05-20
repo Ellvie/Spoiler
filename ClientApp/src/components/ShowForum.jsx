@@ -78,11 +78,11 @@ export class ShowForum extends Component {
         })
 
         const forumResponse = await Axios.post('https://localhost:7202/api/forum', {
-                forumComment: this.state.entry,
-                showId: showResponse.data.showId,
-                user: this.state.user
+            forumComment: this.state.entry,
+            showKey: showResponse.data.showId,
+            user: this.state.user
         })
-        
+
         this.setState({
             showName: '',
             season: '',
@@ -92,9 +92,9 @@ export class ShowForum extends Component {
             airTime: '',
             genre: '',
             network: '',
-            description: '' ,
+            description: '',
             entry: '',
-            show: {}           
+            show: {}
         })
 
         /* //Post to show table

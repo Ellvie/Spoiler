@@ -12,9 +12,13 @@ namespace Spoiler.Models
 
         public DateTime Added { get; set; } = DateTime.Now;
 
-        public Film? Film { get; set; }
+        [NotMapped]
+        public int? FilmKey { get; set; }
 
-        public int FilmKey { get; set; }
+        [NotMapped]
+        public int? ShowKey { get; set; }
+
+        public Film? Film { get; set; }
 
         public Show? Show { get; set; }
 

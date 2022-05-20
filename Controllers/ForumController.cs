@@ -77,20 +77,20 @@ namespace Spoiler.Controllers
         // POST: api/Forum
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Forum>> PostForum(ForumCommentPost forumComment)
+        public async Task<ActionResult<Forum>> PostForum(Forum forum)
         {
             var newForumEntry = new Forum
             {
-                ForumComment = forumComment.ForumComment,
-                User = forumComment.User
+                ForumComment = forum.ForumComment,
+                User = forum.User
             };
-            if (forumComment.ShowId is null)
+            if (forum.ShowKey is null)
             {
-                newForumEntry.Film = _context.Films.Find(forumComment.FilmId);
+                newForumEntry.Film = _context.Films.Find(forum.FilmKey);
             }
             else
             {
-                newForumEntry.Show = _context.Shows.Find(forumComment.ShowId);
+                newForumEntry.Show = _context.Shows.Find(forum.ShowKey);
             }            
             _context.Forum.Add(newForumEntry);
             await _context.SaveChangesAsync();

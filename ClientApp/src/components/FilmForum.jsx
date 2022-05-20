@@ -20,10 +20,7 @@ export class FilmForum extends Component {
 
             forumComment: '',
             isAuthenticated: false,
-            user: null,
-            data: [],
-            filmId: '',
-            FilmKey: ''
+            user: null
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -60,9 +57,11 @@ export class FilmForum extends Component {
     }
 
     //Handle submitted form
-    handleSubmit(event) {
+    async handleSubmit(event) {
+        event.preventDefault();
+
         //Post to film table
-        Axios.post('https://localhost:7202/api/films', {
+        const filmResponse = await Axios.post('https://localhost:7202/api/films', {
             filmName: this.state.filmName,
             year: this.state.year,
             genre: this.state.genre,
@@ -70,63 +69,98 @@ export class FilmForum extends Component {
             description: this.state.description,
         })
 
-            .then((response) => {
-                console.log(response);
-                this.setState({
-                    filmName: '',
-                    year: '',
-                    genre: '',
-                    studio: '',
-                    description: '',
-                    data: response.data
-                });    
-            })
-            .catch(error => console.error(error));
 
 
         //Post to forum comment table
-        Axios({
-            method: 'post',
-            url: 'https://localhost:7202/api/forum',
-            data: {
-                forumComment: this.state.forumComment,
-                user: this.state.user,
-                FilmKey: this.state.data.filmId
-            },
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            }
+        await Axios.post('https://localhost:7202/api/forum', {
+            forumComment: this.state.forumComment,
+            user: this.state.user,
+            filmKey: filmResponse.data.filmId
         })
-            .then(() => {
-                this.setState({
-                    forumComment: '',
-                    user: null,
-                    FilmKey: '',
-                    data: ''
-                });
-            })
-            .catch(error => console.error(error));
 
-        event.preventDefault();
+        this.setState({
+            filmName: '',
+            year: '',
+            genre: '',
+            studio: '',
+            description: '',
+            forumComment: '',
+            user: null,
+            data: []
+        });
 
-        ////Post to forum comment table
-        //Axios.post('https://localhost:7202/api/forum', {
-        //    forumComment: this.state.forumComment,
-        //    user: this.state.user,
-        //    filmId: this.state.data.filmId
-        //})
-        //    .then(() => {
-        //        this.setState({
-        //            forumComment: '',
-        //            user: null,
-        //            filmId: '',
-        //            data: ''
-        //        });
-        //    })
-        //    .catch(error => console.error(error));
 
-        //event.preventDefault();
+
     }
+
+    ////Handle submitted form
+    //handleSubmit(event) {
+    //    //Post to film table
+    //    Axios.post('https://localhost:7202/api/films', {
+    //        filmName: this.state.filmName,
+    //        year: this.state.year,
+    //        genre: this.state.genre,
+    //        studio: this.state.studio,
+    //        description: this.state.description,
+    //    })
+
+    //        .then((response) => {
+    //            console.log(response);
+    //            this.setState({
+    //                filmName: '',
+    //                year: '',
+    //                genre: '',
+    //                studio: '',
+    //                description: '',
+    //                data: response.data
+    //            });    
+    //        })
+    //        .catch(error => console.error(error));
+
+
+    //    //Post to forum comment table
+    //    Axios({
+    //        method: 'post',
+    //        url: 'https://localhost:7202/api/forum',
+    //        data: {
+    //            forumComment: this.state.forumComment,
+    //            user: this.state.user,
+    //            FilmKey: this.state.data.filmId
+    //        },
+    //        headers: {
+    //            'Content-Type': 'application/json; charset=utf-8'
+    //        }
+    //    })
+    //        .then(() => {
+    //            this.setState({
+    //                forumComment: '',
+    //                user: null,
+    //                FilmKey: '',
+    //                data: ''
+    //            });
+    //        })
+    //        .catch(error => console.error(error));
+
+    //    event.preventDefault();
+
+    //    ////Post to forum comment table
+    //    //Axios.post('https://localhost:7202/api/forum', {
+    //    //    forumComment: this.state.forumComment,
+    //    //    user: this.state.user,
+    //    //    filmId: this.state.data.filmId
+    //    //})
+    //    //    .then(() => {
+    //    //        this.setState({
+    //    //            forumComment: '',
+    //    //            user: null,
+    //    //            filmId: '',
+    //    //            data: ''
+    //    //        });
+    //    //    })
+    //    //    .catch(error => console.error(error));
+
+    //    //event.preventDefault();
+    //}
 
     render() {
         return (

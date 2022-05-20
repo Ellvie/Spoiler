@@ -18,10 +18,10 @@ export class SideMenu extends Component {
             <div className="sideMenu">
                 <ul>
                     <li>
-                        <Link className="sideMenuLink" to="/"><img className="miniIcon" src={home}></img>Home</Link>
+                        <Link tag={Link} className="sideMenuLink" to="/"><img className="miniIcon" src={home}></img>Home</Link>
                     </li>
                     <li>
-                        <Link className="sideMenuLink" to="/News"><img className="miniIcon" src={news}></img>News</Link>
+                        <Link tag={Link} className="sideMenuLink" to="/News"><img className="miniIcon" src={news}></img>News</Link>
                     </li>
                     <li>
                         <Link tag={Link} className="sideMenuLink" to="/Guide"><img className="miniIcon" src={tv}></img>TV-guide</Link>
