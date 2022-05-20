@@ -35,14 +35,15 @@ export class ForumSingle extends Component {
 
     displayComments = (forumComments) => {
         if (!forumComments.length) return null;
+        console.log(forumComments)
         return forumComments.map((comment) => (
             <div key={comment.forumCommentId} className="column box">
                 <div className="flex">
                     <img className="miniPic" src="" alt="User picture"></img>
-                    <h2>Användarnamn</h2>
-                    <p className="date">2022-03-30 16:24</p>
+                    <h2>{comment.user.email}</h2>
+                    <p className="date">{comment.added}</p>
                 </div>
-                <p>{this.state.comment.comment}</p>
+                <p>{comment.comment}</p>
             </div>
         ));
     };
@@ -66,7 +67,7 @@ export class ForumSingle extends Component {
 
 
                 <section className="content">
-                    <ForumComment />
+                    <ForumComment forumId={this.state.forum.forumId} />
                 </section>
             </main>
         );

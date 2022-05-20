@@ -16,5 +16,6 @@ namespace Spoiler.Models
         public int CommentKey { get; set; }
 
         public Forum? Forum { get; set; }
+        public DateTime Added { get; set; } = DateTime.Now;
     }
 }

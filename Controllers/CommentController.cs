@@ -16,17 +16,20 @@ namespace Spoiler.Controllers
     public class CommentController : ControllerBase
     {
         private readonly SpoilerContext _context;
+        private readonly ApplicationDbContext _userContext;
 
-        public CommentController(SpoilerContext context)
+        public CommentController(SpoilerContext context, ApplicationDbContext userContext)
         {
             _context = context;
+            _userContext = userContext;
         }
 
        // GET: api/Comment
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ForumComment>>> GetComments(int forumId)
         {
-            var test = await _context.ForumComment.Where(x => x.Forum.ForumId == forumId).ToListAsync();
+            var test = await _context.ForumComment.Include(x => x.User).Where(x => x.Forum.ForumId == forumId).ToListAsync();
+            var user = await _userContext.Users.FindAsync(test.FirstOrDefault().User.Id);            
             return test;
         }
 
@@ -76,7 +79,7 @@ namespace Spoiler.Controllers
             _context.ForumComment.Add(newForumComment);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetForum", new { id = newForumComment.ForumCommentId }, newForumComment);
+            return CreatedAtAction("GetComments", new { id = newForumComment.ForumCommentId });
         }
 
         // DELETE: api/Comment/5

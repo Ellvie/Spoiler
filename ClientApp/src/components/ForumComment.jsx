@@ -1,5 +1,6 @@
 ﻿import React, { Component, useState } from 'react';
 import Axios from 'axios';
+import authService from './api-authorization/AuthorizeService';
 
 
 
@@ -8,15 +9,45 @@ export class ForumComment extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { value: '' };
+        this.state = {
+            value: '',
+            forumId: this.props.forumId,
+            user: null
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) { this.setState({ value: event.target.value }); }
+    //Get user
+    componentDidMount() {
+        this._subscription = authService.subscribe(() => this.populateState());
+        this.populateState();
+    }
+
+    componentWillUnmount() {
+        authService.unsubscribe(this._subscription);
+    }
+
+    async populateState() {
+        const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
+        this.setState({
+            isAuthenticated,
+            //userName: user && user.name
+            user: user
+        });
+    }
+
+
+    handleChange(event) {
+        this.setState({
+            value: event.target.value
+        });
+    }
     handleSubmit(event) {
         Axios.post('https://localhost:7202/api/Comment', {
-            comment: this.state.value
+            comment: this.state.value,
+            commentKey: this.state.forumId,
+            user: this.state.user
         })
             .then(() => {
                 this.setState({value: ''});
