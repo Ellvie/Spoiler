@@ -16,17 +16,20 @@ namespace Spoiler.Controllers
     public class ForumController : ControllerBase
     {
         private readonly SpoilerContext _context;
+        private readonly ApplicationDbContext _userContext;
 
-        public ForumController(SpoilerContext context)
+        public ForumController(SpoilerContext context, ApplicationDbContext userContext)
         {
             _context = context;
+            _userContext = userContext;
         }
 
         // GET: api/Forum
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Forum>>> GetForum()
         {
-            return await _context.Forum.Include(f => f.Show).Include(f => f.Film).ToListAsync();
+            var forum = await _context.Forum.Include(f => f.Show).Include(f => f.Film).Include(f => f.User).ToListAsync();
+            return forum;
         }
 
         // GET: api/Forum/5
@@ -82,7 +85,7 @@ namespace Spoiler.Controllers
             var newForumEntry = new Forum
             {
                 ForumComment = forum.ForumComment,
-                User = forum.User
+                User = _userContext.Users.Find(forum.UserKey)
             };
             if (forum.ShowKey is null)
             {
@@ -96,23 +99,6 @@ namespace Spoiler.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetForum", new { id = newForumEntry.ForumId }, newForumEntry);
-        }
-
-        // POST: api/Forum
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Forum>> PostComment(ForumComment forumComment)
-        {
-            var newForumComment = new ForumComment
-            {
-                Comment = forumComment.Comment,
-                User = forumComment.User
-            };
-            newForumComment.Forum = _context.Forum.Find(forumComment.CommentKey);
-            _context.ForumComment.Add(newForumComment);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetForum", new { id = newForumComment.ForumCommentId }, newForumComment);
         }
 
         // DELETE: api/Forum/5

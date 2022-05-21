@@ -2,6 +2,7 @@
 import { ForumComment } from './ForumComment';
 import Axios from 'axios';
 
+
 export class ForumSingle extends Component {
     static displayName = ForumSingle.name;
 
@@ -20,16 +21,18 @@ export class ForumSingle extends Component {
     };
 
 
-    getForumComments = () => {
-        Axios.get('https://localhost:7202/api/comment/', { params: { forumId: this.state.forum.forumId } })
-            .then((response) => {
-                const data = response.data;
-                this.setState({
-                    forumComments: data
-                });
-            })
+    getForumComments = async () => {
+        var response = await Axios.get('https://localhost:7202/api/comment/',
+            {
+                params:
+                {
+                    forumId: this.state.forum.forumId
+                }
+            });
 
-            .catch(error => console.error(error));
+        this.setState({
+            forumComments: response.data
+        });
     }
 
 
@@ -56,8 +59,8 @@ export class ForumSingle extends Component {
                 <div className="column box">
                     <div className="flex">
                         <img className="miniPic" src="" alt="User picture"></img>
-                        <h2>Användarnamn</h2>
-                        <p className="date">2022-03-30 16:24</p>
+                        <h2>{this.state.forum.user.email}</h2>
+                        <p className="date">{this.state.forum.added}</p>
                     </div>
                     <p>{this.state.forum.forumComment}</p>
                 </div>

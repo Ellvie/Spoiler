@@ -80,7 +80,7 @@ export class ShowForum extends Component {
         const forumResponse = await Axios.post('https://localhost:7202/api/forum', {
             forumComment: this.state.entry,
             showKey: showResponse.data.showId,
-            user: this.state.user
+            userKey: this.state.user.sub
         })
 
         this.setState({

@@ -24,20 +24,18 @@ namespace Spoiler.Controllers
             _userContext = userContext;
         }
 
-       // GET: api/Comment
+        // GET: api/Comment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ForumComment>>> GetComments(int forumId)
+        public async Task<ActionResult<IEnumerable<ForumComment>>> GetComment(int forumId)
         {
-            var test = await _context.ForumComment.Include(x => x.User).Where(x => x.Forum.ForumId == forumId).ToListAsync();
-            var user = await _userContext.Users.FindAsync(test.FirstOrDefault().User.Id);            
-            return test;
+            return await _context.ForumComment.Include(x => x.User).Where(x => x.Forum.ForumId == forumId).ToListAsync();
         }
 
 
         // PUT: api/Forum/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutForum(int id, ForumComment forumComment)
+        public async Task<IActionResult> PutComment(int id, ForumComment forumComment)
         {
             if (id != forumComment.ForumCommentId)
             {
@@ -52,7 +50,7 @@ namespace Spoiler.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ForumExists(id))
+                if (!CommentExists(id))
                 {
                     return NotFound();
                 }
@@ -68,37 +66,23 @@ namespace Spoiler.Controllers
         // POST: api/Comment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Forum>> PostComment(ForumComment forumComment)
+        public async Task<ActionResult<IEnumerable<ForumComment>>> PostComment(ForumComment forumComment)
         {
             var newForumComment = new ForumComment
             {
                 Comment = forumComment.Comment,
-                User = forumComment.User
+                Forum = _context.Forum.Find(forumComment.CommentKey),
+                User = _userContext.Users.Find(forumComment.UserKey)
             };
-            newForumComment.Forum = _context.Forum.Find(forumComment.CommentKey);
-            _context.ForumComment.Add(newForumComment);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetComments", new { id = newForumComment.ForumCommentId });
-        }
+            _context.ForumComment.Attach(newForumComment);
 
-        // DELETE: api/Comment/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteForum(int id)
-        {
-            var forum = await _context.ForumComment.FindAsync(id);
-            if (forum == null)
-            {
-                return NotFound();
-            }
-
-            _context.ForumComment.Remove(forum);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ForumExists(int id)
+        private bool CommentExists(int id)
         {
             return _context.ForumComment.Any(e => e.ForumCommentId == id);
         }

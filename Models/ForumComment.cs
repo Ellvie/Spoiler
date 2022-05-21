@@ -13,6 +13,9 @@ namespace Spoiler.Models
         public ApplicationUser? User { get; set; }
 
         [NotMapped]
+        public string? UserKey { get; set; }
+
+        [NotMapped]
         public int CommentKey { get; set; }
 
         public Forum? Forum { get; set; }

@@ -74,7 +74,7 @@ export class FilmForum extends Component {
         //Post to forum comment table
         await Axios.post('https://localhost:7202/api/forum', {
             forumComment: this.state.forumComment,
-            user: this.state.user,
+            userKey: this.state.user.sub,
             filmKey: filmResponse.data.filmId
         })
 

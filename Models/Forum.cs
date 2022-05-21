@@ -18,6 +18,9 @@ namespace Spoiler.Models
         [NotMapped]
         public int? ShowKey { get; set; }
 
+        [NotMapped]
+        public string? UserKey { get; set; }
+
         public Film? Film { get; set; }
 
         public Show? Show { get; set; }

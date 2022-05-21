@@ -43,29 +43,30 @@ export class ForumComment extends Component {
             value: event.target.value
         });
     }
-    handleSubmit(event) {
-        Axios.post('https://localhost:7202/api/Comment', {
+
+    async handleSubmit(event) {
+        event.preventDefault();
+       var response = await Axios.post('https://localhost:7202/api/Comment', {
             comment: this.state.value,
             commentKey: this.state.forumId,
-            user: this.state.user
+            userKey: this.state.user.sub
         })
-            .then(() => {
-                this.setState({value: ''});
-            })
-            .catch(error => console.error(error));
 
-        event.preventDefault();
+        this.setState({
+            value: ''
+        });        
+        window.location.reload();
     }
 
     render() {
+        { if (!this.state.user) return null }
         return (
             <form onSubmit={this.handleSubmit}>
                 <section className="box">
                     <h1>Add a comment</h1>
-                    <form className="">
+
                         <textarea id="forumComment" placeholder="Add a comment..." value={this.state.value} onChange={this.handleChange} /> 
                         <input type="submit" value="Submit" />
-                        </form>
                 </section>
             </form>
         );

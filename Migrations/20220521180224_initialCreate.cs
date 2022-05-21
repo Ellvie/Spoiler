@@ -199,6 +199,32 @@ namespace Spoiler.Migrations
                         principalColumn: "ShowId");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ForumComment",
+                columns: table => new
+                {
+                    ForumCommentId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Comment = table.Column<string>(type: "TEXT", nullable: false),
+                    UserId = table.Column<string>(type: "TEXT", nullable: true),
+                    ForumId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Added = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ForumComment", x => x.ForumCommentId);
+                    table.ForeignKey(
+                        name: "FK_ForumComment_ApplicationUser_UserId",
+                        column: x => x.UserId,
+                        principalTable: "ApplicationUser",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ForumComment_Forum_ForumId",
+                        column: x => x.ForumId,
+                        principalTable: "Forum",
+                        principalColumn: "ForumId");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Forum_FilmId",
                 table: "Forum",
@@ -212,6 +238,16 @@ namespace Spoiler.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Forum_UserId",
                 table: "Forum",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ForumComment_ForumId",
+                table: "ForumComment",
+                column: "ForumId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ForumComment_UserId",
+                table: "ForumComment",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -248,7 +284,7 @@ namespace Spoiler.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Forum");
+                name: "ForumComment");
 
             migrationBuilder.DropTable(
                 name: "News");
@@ -261,6 +297,9 @@ namespace Spoiler.Migrations
 
             migrationBuilder.DropTable(
                 name: "TVGuide");
+
+            migrationBuilder.DropTable(
+                name: "Forum");
 
             migrationBuilder.DropTable(
                 name: "ApplicationUser");
