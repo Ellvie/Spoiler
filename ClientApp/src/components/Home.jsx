@@ -7,7 +7,7 @@ export class Home extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <h1>Recent</h1>
                 
 
@@ -40,7 +40,7 @@ export class Home extends Component {
                         </div>
                     </Link>
                 </section>
-            </main>
+            </section>
         );
     }
 }

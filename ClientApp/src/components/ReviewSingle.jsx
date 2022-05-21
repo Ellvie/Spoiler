@@ -6,7 +6,7 @@ export class ReviewSingle extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <h1>Review - TV-title - Episode name - S01E01</h1>
 
                 <div className="column">
@@ -17,7 +17,7 @@ export class ReviewSingle extends Component {
                     </div>
                     <p>Lorem ipsum</p>
                 </div>
-            </main>
+            </section>
         );
     }
 }

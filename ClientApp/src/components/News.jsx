@@ -15,7 +15,7 @@ export class News extends Component {
     render() {
 
         return (
-            <main>
+            <section>
                 <h1>News</h1>
 
                 <section className="content">
@@ -26,7 +26,7 @@ export class News extends Component {
                         <p>{this.state.news.content}</p>
                     </div>
                 </section>
-            </main>
+            </section>
         );
     }
 

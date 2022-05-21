@@ -219,6 +219,7 @@ h1 {
     border-bottom: 1px solid $light;
     padding: 0 0 0.2em 0;
     margin: 0 0 2em 0;
+    font-size: 2em;
 }
 
 h2 {
@@ -226,4 +227,155 @@ h2 {
     border-bottom: 1px dotted $light;
     padding: 0 0 0.2em 0;
     margin: 0 0 1em 0;
+}
+
+/*Forms --------------------------------------------------------------------------------*/
+
+
+
+input[type=button], input[type=submit], input[type=reset] {
+    padding: 1em;
+    background-color: $accent;
+    background-image: linear-gradient(45deg, $accent, $light);
+    border: 1px solid $accent;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #680000;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 2em;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
+    background-color: $light;
+    background-image: linear-gradient(45deg, $light, $accent);
+}
+
+
+input[type=text], input[type=number], select, textarea, #Input_Password, #Input_Email, #Input_ConfirmPassword {
+    width: 100%;
+    padding: 1em 2em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 1em 0 2em 0;
+}
+
+.formFlex {
+    display: flex;
+}
+
+.search {
+    width: 85%;
+    height: 100% !important;
+    padding: 1.5em !important;
+}
+
+.smallSubmit {
+    width: 15% !important;
+    height: 100% !important;
+    padding: 1.2em !important;
+    margin-left: 1em !important;
+    margin-top: 0.8em !important;
+}
+
+
+
+/*Burger-navigation for smaller screens ------------------------------------------------*/
+.burgernav {
+    display: none;
+    cursor: pointer;
+/*    position: absolute;
+    left: 25px;
+    top: 15px;*/
+}
+
+.burgernav div {
+    width: 25px;
+    height: 3px;
+    background-color: rgb(228, 228, 228);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+
+
+
+
+/*Media Queries ---------------------------------------------------------------------*/
+
+/* max 1050px */
+@media screen and (max-width: 1050px) {
+
+    .container {
+        width: 100%;
+        margin: 3em 0 0 0;
+    }
+
+    .carousel-root {
+        margin: 0 0 0 0em;
+    }
+
+    /*burger -------------------------------------*/
+    ul {
+        justify-content: space-around;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 100vh;
+        top: 4vh;
+        background-color: rgb(95, 141, 160);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .burgernav {
+        display: block;
+    }
+
+    /*Changes the look of the burger nav. Nicer transitions.*/
+    .nav-active {
+        transform: translateX(0%);
+    }
+
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+
+    /*Toggles the lines in the burger nav, used with JS*/
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .toggle .line2 {
+        opacity: 0;
+    }
+
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
 }

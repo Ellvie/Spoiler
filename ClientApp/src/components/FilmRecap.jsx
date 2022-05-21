@@ -102,7 +102,7 @@ export class FilmRecap extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <Link className="flex back" to="/Recaps"><img className="miniIcon" src={left}></img>Back</Link>
                 <section className="comment">
                     <h1>Add a film recap</h1>
@@ -132,7 +132,7 @@ export class FilmRecap extends Component {
                         <input type="submit" value="Post"></input>
                     </form>
                 </section>
-            </main>
+            </section>
         );
     }
 }

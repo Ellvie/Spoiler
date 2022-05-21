@@ -164,7 +164,7 @@ export class FilmForum extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <Link className="flex back" to="/Forum"><img className="miniIcon" src={left}></img>Back</Link>
                 <section className="comment">
                     <h1>Add a film forum entry</h1>
@@ -191,7 +191,7 @@ export class FilmForum extends Component {
                         <input type="submit" value="Post"></input>
                     </form>
                 </section>
-            </main>
+            </section>
         );
     }
 }

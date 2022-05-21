@@ -10,7 +10,7 @@ export class Reviews extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <h1>Reviews</h1>
 
                 <section className="content">
@@ -32,7 +32,7 @@ export class Reviews extends Component {
                         </Link>
                     </div>
                 </section>
-            </main>
+            </section>
         );
     }
 }

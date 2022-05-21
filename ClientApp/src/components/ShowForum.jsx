@@ -144,7 +144,7 @@ export class ShowForum extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <Link className="flex back" to="/Forum"><img className="miniIcon" src={left}></img>Back</Link>
                 <section className="comment">
                     <h1>Add a show forum entry</h1>
@@ -183,7 +183,7 @@ export class ShowForum extends Component {
                         <input type="submit" value="Post"></input>
                     </form>
                 </section>
-            </main>
+            </section>
         );
     }
 }

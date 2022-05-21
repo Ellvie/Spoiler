@@ -50,7 +50,7 @@ export class ForumSingle extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <h1>{this.state.forum.show ? this.state.forum.show.showName : this.state.forum.film.filmName} - {this.state.forum.show ? this.state.forum.show.episodeName : this.state.forum.film.year}  {this.state.forum.show ? this.state.forum.show.episode : null}</h1>
 
                 <div className="column box">
@@ -69,7 +69,7 @@ export class ForumSingle extends Component {
                 <section className="content">
                     <ForumComment forumId={this.state.forum.forumId} />
                 </section>
-            </main>
+            </section>
         );
     }
 }

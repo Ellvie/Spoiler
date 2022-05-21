@@ -6,7 +6,7 @@ export class Guide extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <h1>TV-Guide</h1>
 
                 <section className="content">
@@ -16,7 +16,7 @@ export class Guide extends Component {
                         <img className="miniPic" src="" alt="Picture of tv-show"></img>
                     </div>
                 </section>
-            </main>
+            </section>
         );
     }
 }

@@ -12,11 +12,35 @@ import search from "../pics/search.png";
 export class SideMenu extends Component {
     static displayName = SideMenu.name;
 
+    navSlide = () => {
+        let burger = document.querySelector('.burgernav');
+        let nav = document.querySelector('.nav-links');
+        let navLinks = document.querySelectorAll('.nav-links li');
+
+
+        burger.addEventListener('click', () => {
+            //Toggle nav
+            nav.classList.toggle('nav-active');
+
+            //Animate links
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = "";
+                }
+                else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 5 + 0.5}s`;
+                }
+            });
+
+            //Burger Animation
+            burger.classList.toggle('toggle');
+        });
+    }
 
     render() {
         return (
-            <div className="sideMenu">
-                <ul>
+            <div className="">
+                <ul className="sideMenu nav-links">
                     <li>
                         <Link tag={Link} className="sideMenuLink" to="/"><img className="miniIcon" src={home}></img>Home</Link>
                     </li>
@@ -42,4 +66,7 @@ export class SideMenu extends Component {
             </div>
         );
     }
+
+
+
 }

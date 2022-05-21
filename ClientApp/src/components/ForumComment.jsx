@@ -60,55 +60,16 @@ export class ForumComment extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <section>
+                <section className="box">
                     <h1>Add a comment</h1>
+                    <form className="">
                         <textarea id="forumComment" placeholder="Add a comment..." value={this.state.value} onChange={this.handleChange} /> 
-                    <input type="submit" value="Submit" />
+                        <input type="submit" value="Submit" />
+                        </form>
                 </section>
             </form>
         );
     }
-
-
-    //static displayName = ForumComment.name;
-
-    //async PostForm() {
-    //const url = "https://localhost:7202/api/Forum"
-    //    const [data, setData] = useState({
-    //        forumComment: ""
-    //    });
-    
-
-    //    function submit(e) {
-    //        e.preventDefault();
-    //        Axios.post(url, {
-    //            forumComment: data.forumComment
-    //        })
-    //            .then(res => {
-    //                console.log(res.data)
-    //            })
-    //    }
-
-    //    function handle(e) {
-    //        const newdata = { ...data }
-    //        newdata[e.target.id] = e.target.value
-    //        setData(newdata)
-    //        console.log(newdata)
-    //        }
-
-        
-    //        return (
-    //            <section>
-    //                <h1>Add a comment</h1>
-
-    //                <form className="" onSubmit={(e) => submit(e)}>
-    //                    <textarea onChange={(e) => handle(e)} id="forumComment" value={data.forumComment} name="forumComment" placeholder="Add a comment..."></textarea>
-    //                    <input type="submit" value="Post"></input>
-    //                </form>
-    //            </section>
-    //        );
-        
-    //}
 
 }
 

@@ -50,7 +50,7 @@ export class Forum extends Component {
 
     render() {
         return (
-            <main>
+            <section>
                 <h1>Forum</h1>
 
                 <section className="content">
@@ -67,7 +67,7 @@ export class Forum extends Component {
                         {this.displayForum(this.state.forum)}
                     
                 </section>
-            </main>
+            </section>
         );
     }
 }
