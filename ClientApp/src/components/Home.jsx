@@ -16,7 +16,7 @@ export class Home extends Component {
                     <Link className="flex" to="/forumSingle">
                     <div className="flex">
                         <h3>TV-title - Episode name - S01E01</h3>
-                        <img className="miniPic" src="" alt="Picture of tv-show"></img>
+                        {/*<img className="miniPic" src="" alt="Picture of tv-show"></img>*/}
                     </div>
                     </Link>
                 </section>
@@ -26,7 +26,7 @@ export class Home extends Component {
                     <Link className="flex" to="/recapSingle">
                         <div className="flex">
                             <h3>TV-title - Episode name - S01E01</h3>
-                            <img className="miniPic" src="" alt="Picture of tv-show"></img>
+                            {/*<img className="miniPic" src="" alt="Picture of tv-show"></img>*/}
                         </div>
                     </Link>
                 </section>
@@ -36,7 +36,7 @@ export class Home extends Component {
                     <Link className="flex" to="/reviewSingle">
                         <div className="flex">
                             <h3>TV-title - Episode name - S01E01</h3>
-                            <img className="miniPic" src="" alt="Picture of tv-show"></img>
+                            {/*<img className="miniPic" src="" alt="Picture of tv-show"></img>*/}
                         </div>
                     </Link>
                 </section>

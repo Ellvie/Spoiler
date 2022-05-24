@@ -137,6 +137,12 @@ footer {
     background-color: $dark;
 }
 
+.comment {
+    margin: 0 0 2em 0;
+    display:flex;
+    justify-content:space-between;
+}
+
 /*Links -----------------------------------------------------------------------------------*/
 a {
     color: $light;
@@ -158,6 +164,12 @@ a:hover {
 .back {
     margin: -3em 0 3em -6em;
 }
+
+.userMenu {
+    margin: 0 1em;
+}
+
+
 
 /*Lists ------------------------------------------------------------------------------------*/
 ul {
@@ -227,6 +239,13 @@ h2 {
     border-bottom: 1px dotted $light;
     padding: 0 0 0.2em 0;
     margin: 0 0 1em 0;
+}
+
+.user {
+    font-size: 1em;
+    border: none;
+    padding: 0 0 0em 0;
+    margin: 0 0 0em 0;
 }
 
 /*Forms --------------------------------------------------------------------------------*/

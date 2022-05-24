@@ -41,7 +41,7 @@ export class Forum extends Component {
                 pathname: "/forumSingle",
                 state: forum}}>
                 <div className="flex entry">
-                    <h3>{forum.show ? forum.show.showName : forum.film.filmName} - {forum.show ? forum.show.episodeName : forum.film.year}  {forum.show ? forum.show.episode : null}</h3>
+                    <h3>{forum.show ? forum.show.showName : forum.film.filmName} - {forum.show ? forum.show.episodeName : forum.film.year}  {forum.show ? "- S" + forum.show.season + "E" + forum.show.episode : null}</h3>
                     {/*<img className="miniPic" src="" alt="Picture of tv-show"></img>*/}
                 </div>
             </Link>
