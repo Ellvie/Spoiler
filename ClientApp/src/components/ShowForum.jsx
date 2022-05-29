@@ -24,7 +24,6 @@ export class ShowForum extends Component {
             entry: '',
 
             isAuthenticated: false,
-            //userName: null
             user: null
         };
         this.handleChange = this.handleChange.bind(this);
@@ -46,7 +45,6 @@ export class ShowForum extends Component {
         const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
         this.setState({
             isAuthenticated,
-            //userName: user && user.name
             user: user
         });
     }
@@ -77,7 +75,7 @@ export class ShowForum extends Component {
             description: this.state.description,
         })
 
-        const forumResponse = await Axios.post('https://localhost:7202/api/forum', {
+        await Axios.post('https://localhost:7202/api/forum', {
             forumComment: this.state.entry,
             showKey: showResponse.data.showId,
             userKey: this.state.user.sub
@@ -97,56 +95,15 @@ export class ShowForum extends Component {
             show: {}
         })
 
-        /* //Post to show table
-        Axios.post('https://localhost:7202/api/shows', {
-            showName: this.state.showName,
-            season: this.state.season,
-            episode: this.state.episode,
-            episodeName: this.state.episodeName,
-            airDate: this.state.airDate,
-            airTime: this.state.airTime,
-            genre: this.state.genre,
-            network: this.state.network,
-            description: this.state.description,
-        })
-            .then(() => {
-                this.setState({
-                    showName: '',
-                    season: '',
-                    episode: '',
-                    episodeName: '',
-                    airDate: '',
-                    airTime: '',
-                    genre: '',
-                    network: '',
-                    description: '',
-                });
-            })
-            .catch(error => console.error(error));
 
-
-        //Post to forum comment table
-        Axios.post('https://localhost:7202/api/forum', {
-            forumComment: this.state.entry,
-            //userName: this.state.userName
-            user: this.state.user
-        })
-            .then(() => {
-                this.setState({
-                    entry: '',
-                    user: null
-                });
-            })
-            .catch(error => console.error(error));
-
-        event.preventDefault(); */
+        this.props.history.push('/Forum')
     }
 
     render() {
         return (
-            <section>
+            <section className="frame">
                 <Link className="flex back" to="/Forum"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="comment">
+                <section className="postForm">
                     <h1>Add a show forum entry</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>

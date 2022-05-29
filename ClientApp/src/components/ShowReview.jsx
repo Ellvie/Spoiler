@@ -62,9 +62,10 @@ export class ShowReview extends Component {
     }
 
     //Handle submitted form
-    handleSubmit(event) {
-        //Post to show table
-        Axios.post('https://localhost:7202/api/shows', {
+    async handleSubmit(event) {
+        event.preventDefault();
+
+        const showResponse = await Axios.post('https://localhost:7202/api/shows', {
             showName: this.state.showName,
             season: this.state.season,
             episode: this.state.episode,
@@ -75,47 +76,40 @@ export class ShowReview extends Component {
             network: this.state.network,
             description: this.state.description,
         })
-            .then(() => {
-                this.setState({
-                    showName: '',
-                    season: '',
-                    episode: '',
-                    episodeName: '',
-                    airDate: '',
-                    airTime: '',
-                    genre: '',
-                    network: '',
-                    description: '',
-                });
-            })
-            .catch(error => console.error(error));
 
-
-        //Post to review table
-        Axios.post('https://localhost:7202/api/reviews', {
+        await Axios.post('https://localhost:7202/api/reviews', {
             reviewTitle: this.state.reviewTitle,
             reviewContent: this.state.reviewContent,
             rating: this.state.rating,
-            user: this.state.user
+            showKey: showResponse.data.showId,
+            userKey: this.state.user.sub
         })
-            .then(() => {
-                this.setState({
-                    reviewTitle: '',
-                    reviewContent: '',
-                    rating: '',
-                    user: null
-                });
-            })
-            .catch(error => console.error(error));
 
-        event.preventDefault();
+        this.setState({
+            showName: '',
+            season: '',
+            episode: '',
+            episodeName: '',
+            airDate: '',
+            airTime: '',
+            genre: '',
+            network: '',
+            description: '',
+            reviewTitle: '',
+            reviewContent: '',
+            rating: '',
+            show: {}
+        })
+
+
+        this.props.history.push('/Reviews')
     }
 
     render() {
         return (
-            <section>
+            <section className="frame">
                 <Link className="flex back" to="/Reviews"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="comment">
+                <section className="postForm">
                     <h1>Add a show review</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>

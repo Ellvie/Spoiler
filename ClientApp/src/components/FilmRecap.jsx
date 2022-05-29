@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import Axios from 'axios';
 import authService from './api-authorization/AuthorizeService';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import left from "../pics/arrowLeft.png";
 
@@ -22,7 +22,6 @@ export class FilmRecap extends Component {
             recapContent: '',
 
             isAuthenticated: false,
-            //userName: null
             user: null
         };
         this.handleChange = this.handleChange.bind(this);
@@ -44,7 +43,6 @@ export class FilmRecap extends Component {
         const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
         this.setState({
             isAuthenticated,
-            //userName: user && user.name
             user: user
         });
     }
@@ -60,51 +58,50 @@ export class FilmRecap extends Component {
     }
 
     //Handle submitted form
-    handleSubmit(event) {
+    async handleSubmit(event) {
+        event.preventDefault();
+
         //Post to film table
-        Axios.post('https://localhost:7202/api/films', {
+        const filmResponse = await Axios.post('https://localhost:7202/api/films', {
             filmName: this.state.filmName,
             year: this.state.year,
             genre: this.state.genre,
             studio: this.state.studio,
             description: this.state.description,
         })
-            .then(() => {
-                this.setState({
-                    filmName: '',
-                    year: '',
-                    genre: '',
-                    studio: '',
-                    description: ''
-                });
-            })
-            .catch(error => console.error(error));
 
 
-        //Post to forum comment table
-        Axios.post('https://localhost:7202/api/recaps', {
+
+        //Post to recap table
+        await Axios.post('https://localhost:7202/api/recaps', {
             recapTitle: this.state.recapTitle,
             recapContent: this.state.recapContent,
-            //userName: this.state.userName
-            user: this.state.user
+            userKey: this.state.user.sub,
+            filmKey: filmResponse.data.filmId
         })
-            .then(() => {
-                this.setState({
-                    recapTitle: '',
-                    recapContent: '',
-                    user: null
-                });
-            })
-            .catch(error => console.error(error));
 
-        event.preventDefault();
+        this.setState({
+            filmName: '',
+            year: '',
+            genre: '',
+            studio: '',
+            description: '',
+            recapTitle: '',
+            recapContent: '',
+            user: null,
+            data: []
+        });
+
+        
+        this.props.history.push('/Recaps')
     }
+
 
     render() {
         return (
-            <section>
+            <section className="frame">
                 <Link className="flex back" to="/Recaps"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="comment">
+                <section className="postForm">
                     <h1>Add a film recap</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>

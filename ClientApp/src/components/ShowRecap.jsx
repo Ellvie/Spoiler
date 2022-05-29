@@ -61,9 +61,10 @@ export class ShowRecap extends Component {
     }
 
     //Handle submitted form
-    handleSubmit(event) {
-        //Post to show table
-        Axios.post('https://localhost:7202/api/shows', {
+    async handleSubmit(event) {
+        event.preventDefault();
+
+        const showResponse = await Axios.post('https://localhost:7202/api/shows', {
             showName: this.state.showName,
             season: this.state.season,
             episode: this.state.episode,
@@ -74,45 +75,39 @@ export class ShowRecap extends Component {
             network: this.state.network,
             description: this.state.description,
         })
-            .then(() => {
-                this.setState({
-                    showName: '',
-                    season: '',
-                    episode: '',
-                    episodeName: '',
-                    airDate: '',
-                    airTime: '',
-                    genre: '',
-                    network: '',
-                    description: '',
-                });
-            })
-            .catch(error => console.error(error));
 
-
-        //Post to recap table
-        Axios.post('https://localhost:7202/api/recaps', {
+        await Axios.post('https://localhost:7202/api/recaps', {
             recapTitle: this.state.recapTitle,
             recapContent: this.state.recapContent,
-            user: this.state.user
+            showKey: showResponse.data.showId,
+            userKey: this.state.user.sub
         })
-            .then(() => {
-                this.setState({
-                    recapTitle: '',
-                    recapContent: '',
-                    user: null
-                });
-            })
-            .catch(error => console.error(error));
 
-        event.preventDefault();
+        this.setState({
+            showName: '',
+            season: '',
+            episode: '',
+            episodeName: '',
+            airDate: '',
+            airTime: '',
+            genre: '',
+            network: '',
+            description: '',
+            entry: '',
+            show: {},
+
+            recapTitle: '',
+            recapContent: '',
+        })
+
+        this.props.history.push('/Recaps')
     }
 
     render() {
         return (
-            <section>
+            <section className="frame">
                 <Link className="flex back" to="/Recaps"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="comment">
+                <section className="postForm">
                     <h1>Add a show recap</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>

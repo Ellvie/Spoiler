@@ -32,6 +32,14 @@ namespace Spoiler.Controllers
             return forum;
         }
 
+        // GET: api/Forum
+        [HttpGet("GetThree")]
+        public async Task<ActionResult<IEnumerable<Forum>>> GetThree()
+        {
+            var forum = await _context.Forum.Include(f => f.Show).Include(f => f.Film).Include(f => f.User).OrderBy(f => f.Added).Take(3).ToListAsync();
+            return forum;
+        }
+
         // GET: api/Forum/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Forum>> GetForum(int id)
@@ -95,7 +103,7 @@ namespace Spoiler.Controllers
             {
                 newForumEntry.Show = _context.Shows.Find(forum.ShowKey);
             }            
-            _context.Forum.Add(newForumEntry);
+            _context.Forum.Attach(newForumEntry);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetForum", new { id = newForumEntry.ForumId }, newForumEntry);

@@ -1,5 +1,7 @@
 ﻿import React, { Component } from 'react';
 
+import guide from "../pics/tv.png";
+
 export class Guide extends Component {
     static displayName = Guide.name;
 
@@ -7,7 +9,7 @@ export class Guide extends Component {
     render() {
         return (
             <section>
-                <h1>TV-Guide</h1>
+                <h1 className="flex"><img className="miniIcon" src={guide}></img>TV-Guide</h1>
 
                 <section className="content">
                     <div className="flex">

@@ -28,5 +28,14 @@ namespace Spoiler.Models
         public Show? Show { get; set; }
 
         public ApplicationUser? User { get; set; }
+        [NotMapped]
+        public string? UserKey { get; set; }
+
+        [NotMapped]
+        public int? FilmKey { get; set; }
+
+        [NotMapped]
+        public int? ShowKey { get; set; }
+
     }
 }

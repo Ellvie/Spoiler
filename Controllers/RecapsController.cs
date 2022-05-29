@@ -16,17 +16,28 @@ namespace Spoiler.Controllers
     public class RecapsController : ControllerBase
     {
         private readonly SpoilerContext _context;
+        private readonly ApplicationDbContext _userContext;
 
-        public RecapsController(SpoilerContext context)
+        public RecapsController(SpoilerContext context, ApplicationDbContext userContext)
         {
             _context = context;
+            _userContext = userContext;
         }
 
         // GET: api/Recaps
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Recap>>> GetRecap()
+        public async Task<ActionResult<IEnumerable<Recap>>> GetRecaps()
         {
-            return await _context.Recap.ToListAsync();
+            var recaps = await _context.Recap.Include(f => f.Show).Include(f => f.Film).Include(f => f.User).ToListAsync();
+            return recaps;
+        }
+
+        // GET: api/Recaps
+        [HttpGet("GetThree")]
+        public async Task<ActionResult<IEnumerable<Recap>>> GetThree()
+        {
+            var recaps = await _context.Recap.Include(f => f.Show).Include(f => f.Film).Include(f => f.User).OrderBy(f => f.Added).Take(3).ToListAsync();
+            return recaps;
         }
 
         // GET: api/Recaps/5
@@ -77,12 +88,26 @@ namespace Spoiler.Controllers
         // POST: api/Recaps
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Recap>> PostRecap(Recap recap)
+        public async Task<ActionResult<Forum>> PostRecap(Recap recap)
         {
-            _context.Recap.Add(recap);
+            var newRecapEntry = new Recap
+            {
+                RecapContent = recap.RecapContent,
+                RecapTitle = recap.RecapTitle,
+                User = _userContext.Users.Find(recap.UserKey)
+            };
+            if (recap.ShowKey is null)
+            {
+                newRecapEntry.Film = _context.Films.Find(recap.FilmKey);
+            }
+            else
+            {
+                newRecapEntry.Show = _context.Shows.Find(recap.ShowKey);
+            }
+            _context.Recap.Attach(newRecapEntry);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRecap", new { id = recap.RecapId }, recap);
+            return CreatedAtAction("GetRecap", new { id = newRecapEntry.RecapId }, newRecapEntry);
         }
 
         // DELETE: api/Recaps/5

@@ -1,6 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { ForumComment } from './ForumComment';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import left from "../pics/arrowLeft.png";
 
 
 export class ForumSingle extends Component {
@@ -37,7 +40,7 @@ export class ForumSingle extends Component {
 
 
     displayComments = (forumComments) => {
-        if (!forumComments.length) return null;
+        if (!forumComments || !forumComments.length) return null;
         console.log(forumComments)
         return forumComments.map((comment) => (
             <div key={comment.forumCommentId} className="column box">
@@ -53,24 +56,26 @@ export class ForumSingle extends Component {
 
     render() {
         return (
-            <section>
-                <h1>{this.state.forum.show ? this.state.forum.show.showName : this.state.forum.film.filmName} - {this.state.forum.show ? this.state.forum.show.episodeName : this.state.forum.film.year}  {this.state.forum.show ? "- S" + this.state.forum.show.season + "E" + this.state.forum.show.episode : null}</h1>
+            <section className="frame">
+                <Link className="flex back" to="/Forum"><img className="miniIcon" src={left}></img>Forum</Link>
+                <section>
+                    <h1>{this.state.forum.show ? this.state.forum.show.showName : this.state.forum.film.filmName} - {this.state.forum.show ? this.state.forum.show.episodeName : this.state.forum.film.year}  {this.state.forum.show ? "- S" + this.state.forum.show.season + "E" + this.state.forum.show.episode : null}</h1>
 
-                <div className="column box">
-                    <div className="flex comment">
-                        {/*<img className="miniPic" src="" alt="User picture"></img>*/}
-                        <h2 className="user">{this.state.forum.user.email}</h2>
-                        <p className="date">{this.state.forum.added}</p>
+                    <div className="column box">
+                        <div className="flex comment">
+                            <h2 className="user">{this.state.forum.user.email}</h2>
+                            <p className="date">{this.state.forum.added}</p>
+                        </div>
+                        <p>{this.state.forum.forumComment}</p>
                     </div>
-                    <p>{this.state.forum.forumComment}</p>
-                </div>
 
 
-                {this.displayComments(this.state.forumComments)}
+                    {this.displayComments(this.state.forumComments)}
 
 
-                <section className="content">
-                    <ForumComment forumId={this.state.forum.forumId} />
+                    <section className="content">
+                        <ForumComment forumId={this.state.forum.forumId} />
+                    </section>
                 </section>
             </section>
         );

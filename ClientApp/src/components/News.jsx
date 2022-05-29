@@ -1,5 +1,7 @@
 ﻿import React, { Component } from 'react';
 
+import news from "../pics/news.png";
+
 export class News extends Component {
     static displayName = News.name;
 
@@ -16,7 +18,7 @@ export class News extends Component {
 
         return (
             <section>
-                <h1>News</h1>
+                <h1 className="flex"><img className="miniIcon" src={news}></img>News</h1>
 
                 <section className="content">
                     <div className="column">

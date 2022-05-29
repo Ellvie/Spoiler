@@ -89,84 +89,14 @@ export class FilmForum extends Component {
             data: []
         });
 
-
-
+        this.props.history.push('/Forum')
     }
-
-    ////Handle submitted form
-    //handleSubmit(event) {
-    //    //Post to film table
-    //    Axios.post('https://localhost:7202/api/films', {
-    //        filmName: this.state.filmName,
-    //        year: this.state.year,
-    //        genre: this.state.genre,
-    //        studio: this.state.studio,
-    //        description: this.state.description,
-    //    })
-
-    //        .then((response) => {
-    //            console.log(response);
-    //            this.setState({
-    //                filmName: '',
-    //                year: '',
-    //                genre: '',
-    //                studio: '',
-    //                description: '',
-    //                data: response.data
-    //            });    
-    //        })
-    //        .catch(error => console.error(error));
-
-
-    //    //Post to forum comment table
-    //    Axios({
-    //        method: 'post',
-    //        url: 'https://localhost:7202/api/forum',
-    //        data: {
-    //            forumComment: this.state.forumComment,
-    //            user: this.state.user,
-    //            FilmKey: this.state.data.filmId
-    //        },
-    //        headers: {
-    //            'Content-Type': 'application/json; charset=utf-8'
-    //        }
-    //    })
-    //        .then(() => {
-    //            this.setState({
-    //                forumComment: '',
-    //                user: null,
-    //                FilmKey: '',
-    //                data: ''
-    //            });
-    //        })
-    //        .catch(error => console.error(error));
-
-    //    event.preventDefault();
-
-    //    ////Post to forum comment table
-    //    //Axios.post('https://localhost:7202/api/forum', {
-    //    //    forumComment: this.state.forumComment,
-    //    //    user: this.state.user,
-    //    //    filmId: this.state.data.filmId
-    //    //})
-    //    //    .then(() => {
-    //    //        this.setState({
-    //    //            forumComment: '',
-    //    //            user: null,
-    //    //            filmId: '',
-    //    //            data: ''
-    //    //        });
-    //    //    })
-    //    //    .catch(error => console.error(error));
-
-    //    //event.preventDefault();
-    //}
 
     render() {
         return (
-            <section>
+            <section className="frame">
                 <Link className="flex back" to="/Forum"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="comment">
+                <section className="postForm">
                     <h1>Add a film forum entry</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>

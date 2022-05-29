@@ -65,7 +65,7 @@ export class ForumComment extends Component {
                 <section className="box">
                     <h1>Add a comment</h1>
 
-                        <textarea id="forumComment" placeholder="Add a comment..." value={this.state.value} onChange={this.handleChange} /> 
+                    <textarea id="forumComment" rows="6" placeholder="Add a comment..." value={this.state.value} onChange={this.handleChange} />
                         <input type="submit" value="Submit" />
                 </section>
             </form>

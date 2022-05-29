@@ -16,17 +16,28 @@ namespace Spoiler.Controllers
     public class ReviewsController : ControllerBase
     {
         private readonly SpoilerContext _context;
+        private readonly ApplicationDbContext _userContext;
 
-        public ReviewsController(SpoilerContext context)
+        public ReviewsController(SpoilerContext context, ApplicationDbContext userContext)
         {
             _context = context;
+            _userContext = userContext;
         }
 
         // GET: api/Reviews
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Review>>> GetReview()
         {
-            return await _context.Review.ToListAsync();
+            var review = await _context.Review.Include(f => f.Show).Include(f => f.Film).Include(f => f.User).ToListAsync();
+            return review;
+        }
+
+        // GET: api/Reviews
+        [HttpGet("GetThree")]
+        public async Task<ActionResult<IEnumerable<Review>>> GetThree()
+        {
+            var review = await _context.Review.Include(f => f.Show).Include(f => f.Film).Include(f => f.User).OrderBy(f => f.Added).Take(3).ToListAsync();
+            return review;
         }
 
         // GET: api/Reviews/5
@@ -79,10 +90,25 @@ namespace Spoiler.Controllers
         [HttpPost]
         public async Task<ActionResult<Review>> PostReview(Review review)
         {
-            _context.Review.Add(review);
+            var newReviewEntry = new Review
+            {
+                ReviewContent = review.ReviewContent,
+                ReviewTitle = review.ReviewTitle,
+                Rating = review.Rating,
+                User = _userContext.Users.Find(review.UserKey)
+            };
+            if (review.ShowKey is null)
+            {
+                newReviewEntry.Film = _context.Films.Find(review.FilmKey);
+            }
+            else
+            {
+                newReviewEntry.Show = _context.Shows.Find(review.ShowKey);
+            }            
+            _context.Review.Attach(newReviewEntry);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetReview", new { id = review.ReviewId }, review);
+            return CreatedAtAction("GetReview", new { id = newReviewEntry.ReviewId }, newReviewEntry);
         }
 
         // DELETE: api/Reviews/5

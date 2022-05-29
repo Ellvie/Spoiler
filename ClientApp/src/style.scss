@@ -137,10 +137,22 @@ footer {
     background-color: $dark;
 }
 
+.postForm {
+    margin: 0 0 2em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+
 .comment {
     margin: 0 0 2em 0;
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
+}
+
+.frame {
+    margin: 2em 4em;
 }
 
 /*Links -----------------------------------------------------------------------------------*/
@@ -163,6 +175,15 @@ a:hover {
 
 .back {
     margin: -3em 0 3em -6em;
+}
+
+.end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.end img {
+    margin: 0 0 0 1em;
 }
 
 .userMenu {
@@ -246,6 +267,11 @@ h2 {
     border: none;
     padding: 0 0 0em 0;
     margin: 0 0 0em 0;
+}
+
+.title {
+    color: $light;
+    font-size: 2em;
 }
 
 /*Forms --------------------------------------------------------------------------------*/

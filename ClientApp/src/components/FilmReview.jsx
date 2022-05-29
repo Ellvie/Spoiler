@@ -59,52 +59,50 @@ export class FilmReview extends Component {
     }
 
     //Handle submitted form
-    handleSubmit(event) {
+    async handleSubmit(event) {
+        event.preventDefault();
+
         //Post to film table
-        Axios.post('https://localhost:7202/api/films', {
+        const filmResponse = await Axios.post('https://localhost:7202/api/films', {
             filmName: this.state.filmName,
             year: this.state.year,
             genre: this.state.genre,
             studio: this.state.studio,
             description: this.state.description,
         })
-            .then(() => {
-                this.setState({
-                    filmName: '',
-                    year: '',
-                    genre: '',
-                    studio: '',
-                    description: ''
-                });
-            })
-            .catch(error => console.error(error));
 
 
-        //Post to reviews table
-        Axios.post('https://localhost:7202/api/reviews', {
+
+        //Post to forum comment table
+        await Axios.post('https://localhost:7202/api/reviews', {
             reviewTitle: this.state.reviewTitle,
             reviewContent: this.state.reviewContent,
             rating: this.state.rating,
-            user: this.state.user
+            userKey: this.state.user.sub,
+            filmKey: filmResponse.data.filmId
         })
-            .then(() => {
-                this.setState({
-                    reviewTitle: '',
-                    reviewContent: '',
-                    rating: '',
-                    user: null
-                });
-            })
-            .catch(error => console.error(error));
 
-        event.preventDefault();
+        this.setState({
+            filmName: '',
+            year: '',
+            genre: '',
+            studio: '',
+            description: '',
+            reviewTitle: '',
+            reviewContent: '',
+            rating: '',
+            user: null,
+            data: []
+        });
+
+        this.props.history.push('/Reviews')
     }
 
     render() {
         return (
-            <section>
+            <section className="frame">
                 <Link className="flex back" to="/Reviews"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="comment">
+                <section className="postForm">
                     <h1>Add a film review</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>

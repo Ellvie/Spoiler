@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
+import search from "../pics/search.png";
 
 export class Search extends Component {
     static displayName = Search.name;
@@ -10,7 +10,7 @@ export class Search extends Component {
     render() {
         return (
             <section>
-                <h1>Search</h1>
+                <h1 className="flex"><img className="miniIcon" src={search}></img>Search</h1>
 
                 <section className="content">
                     <form className="formFlex">
@@ -23,9 +23,8 @@ export class Search extends Component {
                     <h2>Results</h2>
 
                     <Link className="flex" to="/forumSingle">
-                        <div className="flex">
+                        <div className="flex box">
                             <h3>TV-title - Episode name - S01E01</h3>
-                            <img className="miniPic" src="" alt="Picture of tv-show"></img>
                         </div>
                     </Link>
                 </section>

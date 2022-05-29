@@ -1,17 +1,58 @@
 ﻿import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 import tv from "../pics/tv.png";
 import film from "../pics/film.png";
+import review from "../pics/review.png";
 
 export class Reviews extends Component {
     static displayName = Reviews.name;
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            reviews: []
+        };
+    }
+
+
+    componentDidMount = () => {
+        this.getReviews();
+    };
+
+
+    getReviews = () => {
+        Axios.get('https://localhost:7202/api/reviews')
+            .then((response) => {
+                const data = response.data;
+                this.setState({
+                    reviews: data
+                });
+            })
+
+            .catch(error => console.error(error));
+    }
+
+
+    displayReviews = (reviews) => {
+        if (!reviews || !reviews.length) return null;
+        return reviews.map((reviews) => (
+            <Link key={reviews.recapId} className="flex box" to={{
+                pathname: "/reviewSingle",
+                state: reviews
+            }}>
+                <div className="flex entry">
+                    <h3>{reviews.show ? reviews.show.showName : reviews.film.filmName} - {reviews.show ? reviews.show.episodeName : reviews.film.year}  {reviews.show ? "- S" + reviews.show.season + "E" + reviews.show.episode : null}</h3>
+                </div>
+            </Link>
+        ));
+    };
 
     render() {
         return (
             <section>
-                <h1>Reviews</h1>
+                <h1 className="flex"><img className="miniIcon" src={review}></img>Reviews</h1>
 
                 <section className="content">
                     <h2>Add</h2>
@@ -23,14 +64,9 @@ export class Reviews extends Component {
 
                 <section className="content">
                     <h2>Latest</h2>
-                    <div className="entry">
-                        <Link className="flex" to="/reviewSingle">
-                            <div className="flex">
-                                <h3>TV-title - Episode name - S01E01</h3>
-                                <img className="miniPic" src="" alt="Picture of tv-show"></img>
-                            </div>
-                        </Link>
-                    </div>
+
+                    {this.displayReviews(this.state.reviews)}
+
                 </section>
             </section>
         );
