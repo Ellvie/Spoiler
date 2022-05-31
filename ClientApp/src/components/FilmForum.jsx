@@ -4,6 +4,7 @@ import authService from './api-authorization/AuthorizeService';
 import { Link } from 'react-router-dom';
 
 import left from "../pics/arrowLeft.png";
+import forum from "../pics/forum.png";
 
 
 export class FilmForum extends Component {
@@ -96,27 +97,27 @@ export class FilmForum extends Component {
         return (
             <section className="frame">
                 <Link className="flex back" to="/Forum"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="postForm">
-                    <h1>Add a film forum entry</h1>
+                <section className="postForm boxNo">
+                    <h1 className="flex"><img className="miniIcon" src={forum}></img>Film forum entry</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>
                         <label>Film name:</label><br></br>
-                        <input type="text" id="filmName" name="filmName" required value={this.state.filmName} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="filmName" name="filmName" placeholder="Ex. Clueless..." required value={this.state.filmName} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label>Year:</label><br></br>
-                        <input type="number" id="year" name="year" min="0" max="3000" required value={this.state.year} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="number" id="year" name="year" min="0" max="3000" placeholder="Ex. 1995..." required value={this.state.year} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label>Genre:</label><br></br>
-                        <input type="text" id="genre" name="genre" required value={this.state.genre} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="genre" name="genre" placeholder="Ex. Romantic Comedy..." required value={this.state.genre} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label>Studio:</label><br></br>
-                        <input type="text" id="studio" name="studio" required value={this.state.studio} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="studio" name="studio" placeholder="Ex. Paramount Pictures..." required value={this.state.studio} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label>Description:</label><br></br>
-                        <input type="text" id="description" name="description" required value={this.state.description} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="description" name="description" placeholder="Ex. The adventures of Cher at Meddlesome Beverly high school..." required value={this.state.description} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label>Entry:</label><br></br>
-                        <textarea id="forumComment" name="forumComment" placeholder="Your entry..." required value={this.state.forumComment} onChange={this.handleChange}></textarea>
+                        <textarea id="forumComment" name="forumComment" rows="10" placeholder="Your entry..." required value={this.state.forumComment} onChange={this.handleChange}></textarea>
 
                         <input type="submit" value="Post"></input>
                     </form>

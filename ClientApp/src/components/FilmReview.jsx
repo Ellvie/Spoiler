@@ -4,6 +4,7 @@ import authService from './api-authorization/AuthorizeService';
 import { Link } from 'react-router-dom';
 
 import left from "../pics/arrowLeft.png";
+import review from "../pics/review.png";
 
 
 export class FilmReview extends Component {
@@ -102,33 +103,33 @@ export class FilmReview extends Component {
         return (
             <section className="frame">
                 <Link className="flex back" to="/Reviews"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="postForm">
-                    <h1>Add a film review</h1>
+                <section className="postForm boxNo">
+                    <h1 className="flex"><img className="miniIcon" src={review}></img>Film review</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>
                         <label for="filmName">Film name:</label><br></br>
-                        <input type="text" id="filmName" name="filmName" required value={this.state.filmName} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="filmName" name="filmName" placeholder="Ex. Clueless..." required value={this.state.filmName} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="year">Year:</label><br></br>
-                        <input type="number" id="year" name="year" min="0" max="3000" required value={this.state.year} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="number" id="year" name="year" min="0" max="3000" placeholder="Ex. 1995..." required value={this.state.year} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="genre">Genre:</label><br></br>
-                        <input type="text" id="genre" name="genre" required value={this.state.genre} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="genre" name="genre" placeholder="Ex. Romantic Comedy..." required value={this.state.genre} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="studio">Studio:</label><br></br>
-                        <input type="text" id="studio" name="studio" required value={this.state.studio} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="studio" name="studio" placeholder="Ex. Paramount Pictures..." required value={this.state.studio} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="description">Description:</label><br></br>
-                        <input type="text" id="description" name="description" required value={this.state.description} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="description" name="description" placeholder="Ex. The adventures of Cher at Meddlesome Beverly high school..." required value={this.state.description} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="rating">Rating:</label><br></br>
-                        <input type="number" id="rating" name="rating" min="0" max="10" required value={this.state.rating} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="number" id="rating" name="rating" min="0" max="10" placeholder="(1-10)" required value={this.state.rating} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="reviewTitle">Review title:</label><br></br>
                         <input type="text" id="reviewTitle" name="reviewTitle" placeholder="Title..." required value={this.state.reviewTitle} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="reviewContent">Review content:</label><br></br>
-                        <textarea id="reviewContent" name="reviewContent" placeholder="Your review..." required value={this.state.reviewContent} onChange={this.handleChange}></textarea>
+                        <textarea id="reviewContent" name="reviewContent" rows="10" placeholder="Your review..." required value={this.state.reviewContent} onChange={this.handleChange}></textarea>
 
                         <input type="submit" value="Post"></input>
                     </form>

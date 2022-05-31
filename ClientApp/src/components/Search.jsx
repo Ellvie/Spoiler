@@ -19,12 +19,18 @@ export class Search extends Component {
                     </form>
                 </section>
 
-                <section className="content">
+                <section className="content boxNo">
                     <h2>Results</h2>
 
                     <Link className="flex" to="/forumSingle">
                         <div className="flex box">
                             <h3>TV-title - Episode name - S01E01</h3>
+                        </div>
+                    </Link>
+
+                    <Link className="flex" to="/forumSingle">
+                        <div className="flex box">
+                            <h3>Film-title - 2001</h3>
                         </div>
                     </Link>
                 </section>

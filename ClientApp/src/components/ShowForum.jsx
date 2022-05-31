@@ -4,6 +4,7 @@ import authService from './api-authorization/AuthorizeService';
 import { Link } from 'react-router-dom';
 
 import left from "../pics/arrowLeft.png";
+import forum from "../pics/forum.png";
 
 export class ShowForum extends Component {
     static displayName = ShowForum.name;
@@ -103,39 +104,39 @@ export class ShowForum extends Component {
         return (
             <section className="frame">
                 <Link className="flex back" to="/Forum"><img className="miniIcon" src={left}></img>Back</Link>
-                <section className="postForm">
-                    <h1>Add a show forum entry</h1>
+                <section className="postForm boxNo">
+                    <h1 className="flex"><img className="miniIcon" src={forum}></img>Show forum entry</h1>
 
                     <form className="" onSubmit={this.handleSubmit}>
                         <label for="showName">Show name:</label><br></br>
-                        <input type="text" id="showName" name="showName" required value={this.state.showName} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="showName" name="showName" placeholder="Ex. Stranger Things..." required value={this.state.showName} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="season">Season:</label><br></br>
-                        <input type="number" id="season" name="season" required value={this.state.season} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="number" id="season" name="season" placeholder="Ex. 1..." required value={this.state.season} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="episode">Episode:</label><br></br>
-                        <input type="number" id="episode" name="episode" required value={this.state.episode} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="number" id="episode" name="episode" placeholder="Ex. 2..." required value={this.state.episode} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="episodeName">Episode name:</label><br></br>
-                        <input type="text" id="episodeName" name="episodeName" required value={this.state.episodeName} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="episodeName" name="episodeName" placeholder="Ex. Chapter Two: The Weirdo on Maple Street..." required value={this.state.episodeName} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="airDate">Air Date:</label><br></br>
-                        <input type="text" id="airDate" name="airDate" required value={this.state.airDate} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="airDate" name="airDate" placeholder="YY-MM-DD" required value={this.state.airDate} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="airTime">Air Time:</label><br></br>
-                        <input type="text" id="airTime" name="airTime" required value={this.state.airTime} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="airTime" name="airTime" placeholder="00:00" required value={this.state.airTime} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="genre">Genre:</label><br></br>
-                        <input type="text" id="genre" name="genre" required value={this.state.genre} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="genre" name="genre" placeholder="Ex. Sci-Fi..." required value={this.state.genre} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="network">Network:</label><br></br>
-                        <input type="text" id="network" name="network" required value={this.state.network} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="network" name="network" placeholder="Ex. Netflix..." required value={this.state.network} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="description">Description:</label><br></br>
-                        <input type="text" id="description" name="description" required value={this.state.description} onChange={this.handleChange}></input><br></br><br></br>
+                        <input type="text" id="description" name="description" placeholder="Ex. Young boy vanishes and supernatural mysteries unfold..." required value={this.state.description} onChange={this.handleChange}></input><br></br><br></br>
 
                         <label for="entry">Entry:</label><br></br>
-                        <textarea id="entry" name="entry" placeholder="Your entry..." required value={this.state.entry} onChange={this.handleChange}></textarea>
+                        <textarea id="entry" name="entry" rows="10" placeholder="Your entry..." required value={this.state.entry} onChange={this.handleChange}></textarea>
 
                         <input type="submit" value="Post"></input>
                     </form>

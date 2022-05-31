@@ -56,7 +56,7 @@ export class Recaps extends Component {
             <section>
                 <h1 className="flex"><img className="miniIcon" src={recap}></img>Recaps</h1>
 
-                <section className="content">
+                <section className="content boxNo">
                     <h2>Add</h2>
                     <div className="flex">
                         <Link className="flex" to="/showRecap"><img className="miniIcon" src={tv}></img>TV-show</Link>
@@ -64,7 +64,7 @@ export class Recaps extends Component {
                     </div>
                 </section>
 
-                <section className="content">
+                <section className="content boxNo">
                     <h2>Latest</h2>
 
                     {this.displayRecaps(this.state.recaps)}

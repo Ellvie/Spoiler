@@ -53,7 +53,7 @@ export class Forum extends Component {
             <section>
                 <h1 className="flex"><img className="miniIcon" src={forum}></img>Forum</h1>
 
-                <section className="content">
+                <section className="content boxNo">
                     <h2>Add</h2>
                     <div className="flex">
                         <Link className="flex" to="/showForum"><img className="miniIcon" src={tv}></img>TV-show</Link>
@@ -61,7 +61,7 @@ export class Forum extends Component {
                     </div>
                 </section>
 
-                <section className="content">
+                <section className="content boxNo">
                     <h2>Latest</h2>
                     
                         {this.displayForum(this.state.forum)}

@@ -43,7 +43,7 @@ export class Reviews extends Component {
                 state: reviews
             }}>
                 <div className="flex entry">
-                    <h3>{reviews.show ? reviews.show.showName : reviews.film.filmName} - {reviews.show ? reviews.show.episodeName : reviews.film.year}  {reviews.show ? "- S" + reviews.show.season + "E" + reviews.show.episode : null}</h3>
+                    <h3 className="flex">{reviews.show ? reviews.show.showName : reviews.film.filmName} - {reviews.show ? reviews.show.episodeName : reviews.film.year}  {reviews.show ? "- S" + reviews.show.season + "E" + reviews.show.episode : null}</h3>
                 </div>
             </Link>
         ));
@@ -54,7 +54,7 @@ export class Reviews extends Component {
             <section>
                 <h1 className="flex"><img className="miniIcon" src={review}></img>Reviews</h1>
 
-                <section className="content">
+                <section className="content boxNo">
                     <h2>Add</h2>
                     <div className="flex">
                         <Link className="flex" to="/showReview"><img className="miniIcon" src={tv}></img>TV-show</Link>
@@ -62,7 +62,7 @@ export class Reviews extends Component {
                     </div>
                 </section>
 
-                <section className="content">
+                <section className="content boxNo">
                     <h2>Latest</h2>
 
                     {this.displayReviews(this.state.reviews)}

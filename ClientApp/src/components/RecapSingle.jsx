@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import left from "../pics/arrowLeft.png";
+import recap from "../pics/recap.png";
 
 export class RecapSingle extends Component {
     static displayName = RecapSingle.name;
@@ -43,7 +44,7 @@ export class RecapSingle extends Component {
         if (!recaps || !recaps.length) return null;
         console.log(recaps)
         return recaps.map((r) => (
-            <div key={r.recapId} className="column box">
+            <div key={r.recapId} className="column boxNo">
                 <div className="flex comment">
                     {/*<img className="miniPic" src="" alt="User picture"></img>*/}
                     <h2 className="user">{r.user.email}</h2>
@@ -59,10 +60,10 @@ export class RecapSingle extends Component {
 
             <section className="frame">
                 <Link className="flex back" to="/Recaps"><img className="miniIcon" src={left}></img>Recaps</Link>
-                <section>
-                    <h1>{this.state.recap.show ? this.state.recap.show.showName : this.state.recap.film.filmName} - {this.state.recap.show ? this.state.recap.show.episodeName : this.state.recap.film.year}  {this.state.recap.show ? "- S" + this.state.recap.show.season + "E" + this.state.recap.show.episode : null}</h1>
+                <section className="boxNo">
+                    <h1 className="flex"><img className="miniIcon" src={recap}></img>{this.state.recap.show ? this.state.recap.show.showName : this.state.recap.film.filmName} - {this.state.recap.show ? this.state.recap.show.episodeName : this.state.recap.film.year}  {this.state.recap.show ? "- S" + this.state.recap.show.season + "E" + this.state.recap.show.episode : null}</h1>
 
-                    <div className="column box">
+                    <div className="column boxNo">
                         <h2 className="title">{this.state.recap.recapTitle}</h2>
                         <div className="flex comment">
                             <h2 className="user">{this.state.recap.user.email}</h2>

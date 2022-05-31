@@ -126,7 +126,7 @@ export class Home extends Component {
 
                 <section className="">
 
-                    <section className="content box">
+                    <section className="content boxNo">
                         <h2 className="flex"><img className="miniIcon" src={forum}></img>Forum discussions</h2>
 
                         {this.displayForum(this.state.forum)}
@@ -134,7 +134,7 @@ export class Home extends Component {
                         <Link className="flex end" to="/Forum">More <img className="miniIcon" src={right}></img></Link>
                     </section>
 
-                    <section className="content box">
+                    <section className="content boxNo">
                         <h2 className="flex"><img className="miniIcon" src={recap}></img>Recaps</h2>
 
                         {this.displayRecaps(this.state.recaps)}
@@ -142,7 +142,7 @@ export class Home extends Component {
                         <Link className="flex end" to="/Recaps">More <img className="miniIcon" src={right}></img></Link>
                     </section>
 
-                    <section className="content box">
+                    <section className="content boxNo">
                         <h2 className="flex"><img className="miniIcon" src={review}></img>Reviews</h2>
 
                         {this.displayReviews(this.state.reviews)}

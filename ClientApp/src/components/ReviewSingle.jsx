@@ -42,7 +42,7 @@ export class ReviewSingle extends Component {
         if (!reviews || !reviews.length) return null;
         console.log(reviews)
         return reviews.map((r) => (
-            <div key={r.reviewId} className="column box">
+            <div key={r.reviewId} className="column boxNo">
                 <div className="flex comment">
                     <h2 className="user">{r.user.email}</h2>
                     <p className="date">{r.added}</p>
@@ -57,10 +57,10 @@ export class ReviewSingle extends Component {
 
             <section className="frame">
                 <Link className="flex back" to="/Reviews"><img className="miniIcon" src={left}></img>Reviews</Link>
-                <section>
-                    <h1>{this.state.review.show ? this.state.review.show.showName : this.state.review.film.filmName} - {this.state.review.show ? this.state.review.show.episodeName : this.state.review.film.year}  {this.state.review.show ? "- S" + this.state.review.show.season + "E" + this.state.review.show.episode : null}</h1>
+                <section className="boxNo">
+                    <h1 className="flex"><img className="miniIcon" src={star}></img>{this.state.review.show ? this.state.review.show.showName : this.state.review.film.filmName} - {this.state.review.show ? this.state.review.show.episodeName : this.state.review.film.year}  {this.state.review.show ? "- S" + this.state.review.show.season + "E" + this.state.review.show.episode : null}</h1>
 
-                    <div className="column box">
+                    <div className="column boxNo">
                         <h2 className="title">{this.state.review.reviewTitle}</h2>
                         <div className="flex comment">
                             <h2 className="user">{this.state.review.user.email}</h2>

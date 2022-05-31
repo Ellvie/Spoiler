@@ -62,7 +62,7 @@ export class ForumComment extends Component {
         { if (!this.state.user) return null }
         return (
             <form onSubmit={this.handleSubmit}>
-                <section className="box">
+                <section className="box add">
                     <h1>Add a comment</h1>
 
                     <textarea id="forumComment" rows="6" placeholder="Add a comment..." value={this.state.value} onChange={this.handleChange} />
